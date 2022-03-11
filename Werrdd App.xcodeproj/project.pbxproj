@@ -10,9 +10,9 @@
 		D8695A8927DACC3F0024BC63 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8695A8827DACC3F0024BC63 /* AppDelegate.swift */; };
 		D8695A8B27DACC3F0024BC63 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8695A8A27DACC3F0024BC63 /* SceneDelegate.swift */; };
 		D8695A8D27DACC3F0024BC63 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8695A8C27DACC3F0024BC63 /* ViewController.swift */; };
-		D8695A9027DACC3F0024BC63 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D8695A8E27DACC3F0024BC63 /* Main.storyboard */; };
 		D8695A9227DACC420024BC63 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D8695A9127DACC420024BC63 /* Assets.xcassets */; };
 		D8695A9527DACC420024BC63 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D8695A9327DACC420024BC63 /* LaunchScreen.storyboard */; };
+		D8695A9D27DAEDCB0024BC63 /* DefinitionCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8695A9C27DAEDCB0024BC63 /* DefinitionCard.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,10 +20,10 @@
 		D8695A8827DACC3F0024BC63 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D8695A8A27DACC3F0024BC63 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		D8695A8C27DACC3F0024BC63 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		D8695A8F27DACC3F0024BC63 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D8695A9127DACC420024BC63 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D8695A9427DACC420024BC63 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D8695A9627DACC420024BC63 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D8695A9C27DAEDCB0024BC63 /* DefinitionCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefinitionCard.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,10 +59,10 @@
 				D8695A8827DACC3F0024BC63 /* AppDelegate.swift */,
 				D8695A8A27DACC3F0024BC63 /* SceneDelegate.swift */,
 				D8695A8C27DACC3F0024BC63 /* ViewController.swift */,
-				D8695A8E27DACC3F0024BC63 /* Main.storyboard */,
 				D8695A9127DACC420024BC63 /* Assets.xcassets */,
 				D8695A9327DACC420024BC63 /* LaunchScreen.storyboard */,
 				D8695A9627DACC420024BC63 /* Info.plist */,
+				D8695A9C27DAEDCB0024BC63 /* DefinitionCard.swift */,
 			);
 			path = "Werrdd App";
 			sourceTree = "<group>";
@@ -127,7 +127,6 @@
 			files = (
 				D8695A9527DACC420024BC63 /* LaunchScreen.storyboard in Resources */,
 				D8695A9227DACC420024BC63 /* Assets.xcassets in Resources */,
-				D8695A9027DACC3F0024BC63 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -140,6 +139,7 @@
 			files = (
 				D8695A8D27DACC3F0024BC63 /* ViewController.swift in Sources */,
 				D8695A8927DACC3F0024BC63 /* AppDelegate.swift in Sources */,
+				D8695A9D27DAEDCB0024BC63 /* DefinitionCard.swift in Sources */,
 				D8695A8B27DACC3F0024BC63 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -147,14 +147,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		D8695A8E27DACC3F0024BC63 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				D8695A8F27DACC3F0024BC63 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		D8695A9327DACC420024BC63 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -294,7 +286,6 @@
 				INFOPLIST_FILE = "Werrdd App/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -322,7 +313,6 @@
 				INFOPLIST_FILE = "Werrdd App/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
