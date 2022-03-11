@@ -37,7 +37,6 @@ class ViewController: UIViewController {
             definition.topAnchor.constraint(equalTo: word.bottomAnchor, constant: 10),
             definition.leadingAnchor.constraint(equalTo: definitionCard.leadingAnchor, constant: 5),
             definition.trailingAnchor.constraint(equalTo: definitionCard.trailingAnchor)
-
         ])
     }
     
@@ -68,7 +67,7 @@ class ViewController: UIViewController {
     lazy var wordType: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "Noun"
+        label.text = "noun"
         label.font = UIFont.italicSystemFont(ofSize: 12)
         return label
     }()
