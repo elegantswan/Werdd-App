@@ -9,9 +9,11 @@ import UIKit
 
 class ViewController: UIViewController {
     
+    let words:[String] = ["Ned Stark", "Catelyn Tully", "Daenerys Targaryen", "Jon Snow", "Tyrion Lannister", "Bran Stark", "Arya Stark", "Sansa Start", "Cersei Lannister", "Robert Baratheon"]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .systemBackground
+        view.backgroundColor = UIColor(red: 253/255, green: 252/255, blue: 220/255, alpha: 1)
         addSubViews()
     }
     
@@ -21,6 +23,7 @@ class ViewController: UIViewController {
         view.addSubview(word)
         view.addSubview(wordType)
         view.addSubview(definition)
+        view.addSubview(refreshButton)
         
         
         NSLayoutConstraint.activate([
@@ -36,7 +39,9 @@ class ViewController: UIViewController {
             wordType.topAnchor.constraint(equalTo: definitionCard.topAnchor, constant: 15),
             definition.topAnchor.constraint(equalTo: word.bottomAnchor, constant: 10),
             definition.leadingAnchor.constraint(equalTo: definitionCard.leadingAnchor, constant: 5),
-            definition.trailingAnchor.constraint(equalTo: definitionCard.trailingAnchor)
+            definition.trailingAnchor.constraint(equalTo: definitionCard.trailingAnchor, constant: 10),
+            refreshButton.bottomAnchor.constraint(equalTo: definitionCard.bottomAnchor, constant: -10),
+            refreshButton.trailingAnchor.constraint(equalTo: definitionCard.trailingAnchor, constant: -10)
         ])
     }
     
@@ -52,7 +57,7 @@ class ViewController: UIViewController {
         let card = UIView()
         card.translatesAutoresizingMaskIntoConstraints = false
         card.layer.cornerRadius = 25
-        card.backgroundColor = .systemMint
+        card.backgroundColor = UIColor(red: 254/255, green: 217/255, blue: 183/255, alpha: 1)
         return card
     }()
     
@@ -80,5 +85,19 @@ class ViewController: UIViewController {
         definition.text = "🐐🐐🐐🐐🐐🐐🐐🐐🐐🐐🐐🐐🐐🐐🐐🐐🐐🐐🐐🐐🐐🐐🐐🐐🐐🐐🐐🐐🐐🐐🐐🐐🐐🐐🐐🐐🐐🐐🐐🐐🐐🐐"
         return definition
     }()
+    
+    lazy var refreshButton: UIButton = {
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        let font = UIFont.systemFont(ofSize: 40)
+        let config = UIImage.SymbolConfiguration(font: font)
+        let image = UIImage(systemName: "arrow.counterclockwise.circle", withConfiguration: config)?.withTintColor(UIColor(red: 240/255, green: 113/255, blue: 103/255, alpha: 1), renderingMode: .alwaysOriginal)
+        button.setImage(image, for: .normal)
+        button.addTarget(self, action: #selector(didTapRefresh), for: .touchUpInside)
+        return button
+    }()
+    
+    @objc private func didTapRefresh() {
+        print("Button pressed")
+    }
 }
-
