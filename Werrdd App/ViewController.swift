@@ -9,8 +9,27 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    let words:[String] = ["Ned Stark", "Catelyn Tully", "Daenerys Targaryen", "Jon Snow", "Tyrion Lannister", "Bran Stark", "Arya Stark", "Sansa Start", "Cersei Lannister", "Robert Baratheon"]
+    struct wordModel {
+        let word: String
+        let definition: String
+        let partOfSpeech: String
+    }
     
+    let words: [wordModel] = [
+        wordModel(word: "alleviate", definition: ": to make (something, such as pain or suffering) more bearable", partOfSpeech: "verb"),
+        wordModel(word: "slosh", definition: ": to flounder or splash through water, mud, or slush", partOfSpeech: "noun"),
+        wordModel(word: "oligarchy", definition: ": a government in which a small group exercises control especially for corrupt and selfish purposes", partOfSpeech: "noun"),
+        wordModel(word: "stint", definition: ": a period of time spent at a particular activity", partOfSpeech: "noun"),
+        wordModel(word: "ETA", definition: ": estimated time of arrival", partOfSpeech: "abbreviation"),
+        wordModel(word: "culture", definition: ": the customary beliefs, social forms, and material traits of a racial, religious, or social group", partOfSpeech: "noun"),
+        wordModel(word: "accountability", definition: ": the quality or state of being accountable", partOfSpeech: "noun"),
+        wordModel(word: "waka", definition: ": a Japanese poem consisting of 31 syllables in 5 lines, with 5 syllables in the first and third lines and 7 in the others", partOfSpeech: "noun"),
+        wordModel(word: "verdurous", definition: ": rich in verdure; freshly green; verdant", partOfSpeech: "adjective"),
+        wordModel(word: "verdurous", definition: ": having or exhibiting a variety of colors", partOfSpeech: "adjective"),
+        wordModel(word: "felicitous", definition: ": well-suited for the occasion, as an action, manner, or expression; apt; appropriate", partOfSpeech: "adjective"),
+        wordModel(word: "transcendental", definition: ": abstract or metaphysical", partOfSpeech: "adjective")
+    ]
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor(red: 253/255, green: 252/255, blue: 220/255, alpha: 1)
@@ -39,7 +58,7 @@ class ViewController: UIViewController {
             wordType.topAnchor.constraint(equalTo: definitionCard.topAnchor, constant: 15),
             definition.topAnchor.constraint(equalTo: word.bottomAnchor, constant: 10),
             definition.leadingAnchor.constraint(equalTo: definitionCard.leadingAnchor, constant: 5),
-            definition.trailingAnchor.constraint(equalTo: definitionCard.trailingAnchor, constant: 10),
+            definition.trailingAnchor.constraint(equalTo: definitionCard.trailingAnchor, constant: -5),
             refreshButton.bottomAnchor.constraint(equalTo: definitionCard.bottomAnchor, constant: -10),
             refreshButton.trailingAnchor.constraint(equalTo: definitionCard.trailingAnchor, constant: -10)
         ])
@@ -83,6 +102,8 @@ class ViewController: UIViewController {
         definition.lineBreakMode = .byWordWrapping
         definition.numberOfLines = 5
         definition.text = "🐐🐐🐐🐐🐐🐐🐐🐐🐐🐐🐐🐐🐐🐐🐐🐐🐐🐐🐐🐐🐐🐐🐐🐐🐐🐐🐐🐐🐐🐐🐐🐐🐐🐐🐐🐐🐐🐐🐐🐐🐐🐐"
+        definition.numberOfLines = 0
+        definition.lineBreakMode = .byTruncatingTail
         return definition
     }()
     
@@ -98,6 +119,17 @@ class ViewController: UIViewController {
     }()
     
     @objc private func didTapRefresh() {
-        print("Button pressed")
+        guard let randomWord = randomize() else { return }
+        updateCardView(newWord: randomWord)
+    }
+    
+    func randomize() -> wordModel? {
+        return words.randomElement()
+    }
+    
+    func updateCardView(newWord word: wordModel) {
+        self.word.text = word.word
+        self.definition.text = word.definition
+        self.wordType.text = word.partOfSpeech
     }
 }
