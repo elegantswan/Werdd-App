@@ -25,18 +25,24 @@ class ViewController: UIViewController {
         wordModel(word: "accountability", definition: ": the quality or state of being accountable", partOfSpeech: "noun"),
         wordModel(word: "waka", definition: ": a Japanese poem consisting of 31 syllables in 5 lines, with 5 syllables in the first and third lines and 7 in the others", partOfSpeech: "noun"),
         wordModel(word: "verdurous", definition: ": rich in verdure; freshly green; verdant", partOfSpeech: "adjective"),
-        wordModel(word: "verdurous", definition: ": having or exhibiting a variety of colors", partOfSpeech: "adjective"),
         wordModel(word: "felicitous", definition: ": well-suited for the occasion, as an action, manner, or expression; apt; appropriate", partOfSpeech: "adjective"),
         wordModel(word: "transcendental", definition: ": abstract or metaphysical", partOfSpeech: "adjective")
     ]
         
+    let tableView = UITableView()
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = UIColor(red: 253/255, green: 252/255, blue: 220/255, alpha: 1)
+        view.backgroundColor = UIConfiguration.backgroundColor
         addSubViews()
+        setupTableView()
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
     }
     
-    func addSubViews() {
+    
+    private func addSubViews() {
         view.addSubview(titleLabel)
         view.addSubview(definitionCard)
         view.addSubview(word)
@@ -64,6 +70,20 @@ class ViewController: UIViewController {
         ])
     }
     
+    private func setupTableView() {
+        view.addSubview(tableView)
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.layer.cornerRadius = 25
+        tableView.allowsSelection = true
+
+        NSLayoutConstraint.activate([
+            tableView.topAnchor.constraint(equalTo: definitionCard.bottomAnchor, constant: 5),
+            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+        ])
+    }
+    
     lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -76,7 +96,7 @@ class ViewController: UIViewController {
         let card = UIView()
         card.translatesAutoresizingMaskIntoConstraints = false
         card.layer.cornerRadius = 25
-        card.backgroundColor = UIColor(red: 254/255, green: 217/255, blue: 183/255, alpha: 1)
+        card.backgroundColor = UIConfiguration.definitionCardBackground
         return card
     }()
     
@@ -131,5 +151,27 @@ class ViewController: UIViewController {
         self.word.text = word.word
         self.definition.text = word.definition
         self.wordType.text = word.partOfSpeech
+    }
+}
+
+extension ViewController: UITableViewDataSource, UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return words.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        cell.contentView.backgroundColor = UIConfiguration.backgroundColor
+        cell.textLabel?.numberOfLines = 0
+        cell.textLabel?.lineBreakMode = .byWordWrapping
+        
+        cell.textLabel?.text = words[indexPath.row].word + "\n" + words[indexPath.row].definition
+        
+        return cell
+    }
+        
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 }

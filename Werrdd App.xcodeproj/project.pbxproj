@@ -13,6 +13,7 @@
 		D8695A9227DACC420024BC63 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D8695A9127DACC420024BC63 /* Assets.xcassets */; };
 		D8695A9527DACC420024BC63 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D8695A9327DACC420024BC63 /* LaunchScreen.storyboard */; };
 		D8695A9D27DAEDCB0024BC63 /* DefinitionCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8695A9C27DAEDCB0024BC63 /* DefinitionCard.swift */; };
+		D8695A9F27EE3E700024BC63 /* UIConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8695A9E27EE3E700024BC63 /* UIConfiguration.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		D8695A9427DACC420024BC63 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D8695A9627DACC420024BC63 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D8695A9C27DAEDCB0024BC63 /* DefinitionCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefinitionCard.swift; sourceTree = "<group>"; };
+		D8695A9E27EE3E700024BC63 /* UIConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIConfiguration.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +65,7 @@
 				D8695A9327DACC420024BC63 /* LaunchScreen.storyboard */,
 				D8695A9627DACC420024BC63 /* Info.plist */,
 				D8695A9C27DAEDCB0024BC63 /* DefinitionCard.swift */,
+				D8695A9E27EE3E700024BC63 /* UIConfiguration.swift */,
 			);
 			path = "Werrdd App";
 			sourceTree = "<group>";
@@ -137,6 +140,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D8695A9F27EE3E700024BC63 /* UIConfiguration.swift in Sources */,
 				D8695A8D27DACC3F0024BC63 /* ViewController.swift in Sources */,
 				D8695A8927DACC3F0024BC63 /* AppDelegate.swift in Sources */,
 				D8695A9D27DAEDCB0024BC63 /* DefinitionCard.swift in Sources */,
