@@ -29,18 +29,13 @@ class ViewController: UIViewController {
         wordModel(word: "transcendental", definition: ": abstract or metaphysical", partOfSpeech: "adjective")
     ]
         
-    let tableView = UITableView()
-
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIConfiguration.backgroundColor
         addSubViews()
-        setupTableView()
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
     }
-    
     
     private func addSubViews() {
         view.addSubview(titleLabel)
@@ -49,7 +44,7 @@ class ViewController: UIViewController {
         view.addSubview(wordType)
         view.addSubview(definition)
         view.addSubview(refreshButton)
-        
+        view.addSubview(tableView)
         
         NSLayoutConstraint.activate([
             titleLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
@@ -66,23 +61,22 @@ class ViewController: UIViewController {
             definition.leadingAnchor.constraint(equalTo: definitionCard.leadingAnchor, constant: 5),
             definition.trailingAnchor.constraint(equalTo: definitionCard.trailingAnchor, constant: -5),
             refreshButton.bottomAnchor.constraint(equalTo: definitionCard.bottomAnchor, constant: -10),
-            refreshButton.trailingAnchor.constraint(equalTo: definitionCard.trailingAnchor, constant: -10)
-        ])
-    }
-    
-    private func setupTableView() {
-        view.addSubview(tableView)
-        tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.layer.cornerRadius = 25
-        tableView.allowsSelection = true
-
-        NSLayoutConstraint.activate([
+            refreshButton.trailingAnchor.constraint(equalTo: definitionCard.trailingAnchor, constant: -10),
             tableView.topAnchor.constraint(equalTo: definitionCard.bottomAnchor, constant: 5),
-            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
+            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
             tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
     }
+    
+    lazy var tableView: UITableView = {
+        let tableView = UITableView()
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.layer.cornerRadius = 25
+        tableView.allowsSelection = true
+        tableView.register(CustomTableViewCell.self, forCellReuseIdentifier: "cell")
+        return tableView
+    }()
     
     lazy var titleLabel: UILabel = {
         let label = UILabel()
@@ -161,13 +155,17 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        cell.contentView.backgroundColor = UIConfiguration.backgroundColor
-        cell.textLabel?.numberOfLines = 0
-        cell.textLabel?.lineBreakMode = .byWordWrapping
+
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? CustomTableViewCell else {
+            return UITableViewCell()
+        }
         
-        cell.textLabel?.text = words[indexPath.row].word + "\n" + words[indexPath.row].definition
+        cell.word.text = words[indexPath.row].word
+        cell.partOfSpeech.text = words[indexPath.row].partOfSpeech
+        cell.definition.text = words[indexPath.row].definition
         
+        cell.backgroundColor = UIConfiguration.definitionCardBackground
+ 
         return cell
     }
         
