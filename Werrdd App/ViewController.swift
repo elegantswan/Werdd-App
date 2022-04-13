@@ -165,11 +165,14 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
         cell.definition.text = words[indexPath.row].definition
         
         cell.backgroundColor = UIConfiguration.definitionCardBackground
- 
+        
         return cell
     }
         
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        navigationController?.pushViewController(DetailViewController(title: words[indexPath.row].word), animated: true)
+        
         tableView.deselectRow(at: indexPath, animated: true)
     }
 }
