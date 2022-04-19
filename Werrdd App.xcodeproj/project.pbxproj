@@ -8,7 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		D8304CA828067A7000FFE4DD /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8304CA728067A7000FFE4DD /* DetailViewController.swift */; };
-		D8351A0D27FBBD6900E3739E /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8351A0C27FBBD6900E3739E /* CustomTableViewCell.swift */; };
+		D8304CAA2807E6B500FFE4DD /* DetailViewCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8304CA92807E6B500FFE4DD /* DetailViewCustomCell.swift */; };
+		D8304CAC280E66C000FFE4DD /* WordModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8304CAB280E66C000FFE4DD /* WordModel.swift */; };
+		D8351A0D27FBBD6900E3739E /* HomeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8351A0C27FBBD6900E3739E /* HomeTableViewCell.swift */; };
 		D8695A8927DACC3F0024BC63 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8695A8827DACC3F0024BC63 /* AppDelegate.swift */; };
 		D8695A8B27DACC3F0024BC63 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8695A8A27DACC3F0024BC63 /* SceneDelegate.swift */; };
 		D8695A8D27DACC3F0024BC63 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8695A8C27DACC3F0024BC63 /* ViewController.swift */; };
@@ -20,7 +22,9 @@
 
 /* Begin PBXFileReference section */
 		D8304CA728067A7000FFE4DD /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
-		D8351A0C27FBBD6900E3739E /* CustomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
+		D8304CA92807E6B500FFE4DD /* DetailViewCustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewCustomCell.swift; sourceTree = "<group>"; };
+		D8304CAB280E66C000FFE4DD /* WordModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordModel.swift; sourceTree = "<group>"; };
+		D8351A0C27FBBD6900E3739E /* HomeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableViewCell.swift; sourceTree = "<group>"; };
 		D8695A8527DACC3F0024BC63 /* Werrdd App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Werrdd App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8695A8827DACC3F0024BC63 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D8695A8A27DACC3F0024BC63 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -70,8 +74,10 @@
 				D8695A9627DACC420024BC63 /* Info.plist */,
 				D8695A9C27DAEDCB0024BC63 /* DefinitionCard.swift */,
 				D8695A9E27EE3E700024BC63 /* UIConfiguration.swift */,
-				D8351A0C27FBBD6900E3739E /* CustomTableViewCell.swift */,
+				D8351A0C27FBBD6900E3739E /* HomeTableViewCell.swift */,
 				D8304CA728067A7000FFE4DD /* DetailViewController.swift */,
+				D8304CA92807E6B500FFE4DD /* DetailViewCustomCell.swift */,
+				D8304CAB280E66C000FFE4DD /* WordModel.swift */,
 			);
 			path = "Werrdd App";
 			sourceTree = "<group>";
@@ -146,12 +152,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D8351A0D27FBBD6900E3739E /* CustomTableViewCell.swift in Sources */,
+				D8351A0D27FBBD6900E3739E /* HomeTableViewCell.swift in Sources */,
+				D8304CAC280E66C000FFE4DD /* WordModel.swift in Sources */,
 				D8695A9F27EE3E700024BC63 /* UIConfiguration.swift in Sources */,
 				D8695A8D27DACC3F0024BC63 /* ViewController.swift in Sources */,
 				D8695A8927DACC3F0024BC63 /* AppDelegate.swift in Sources */,
 				D8695A9D27DAEDCB0024BC63 /* DefinitionCard.swift in Sources */,
 				D8695A8B27DACC3F0024BC63 /* SceneDelegate.swift in Sources */,
+				D8304CAA2807E6B500FFE4DD /* DetailViewCustomCell.swift in Sources */,
 				D8304CA828067A7000FFE4DD /* DetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
