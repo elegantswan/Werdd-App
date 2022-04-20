@@ -45,6 +45,10 @@ class ViewController: UIViewController {
         view.addSubview(definition)
         view.addSubview(refreshButton)
         view.addSubview(tableView)
+        view.addSubview(spinner)
+        view.addSubview(searchBar)
+        
+        tableView.tableHeaderView = searchBar
         
         NSLayoutConstraint.activate([
             titleLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
@@ -65,7 +69,12 @@ class ViewController: UIViewController {
             tableView.topAnchor.constraint(equalTo: definitionCard.bottomAnchor, constant: 5),
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
-            tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+            tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            searchBar.topAnchor.constraint(equalTo: tableView.topAnchor, constant: 10),
+            searchBar.leadingAnchor.constraint(equalTo: tableView.leadingAnchor, constant: 10),
+            searchBar.trailingAnchor.constraint(equalTo: tableView.trailingAnchor, constant: -10),
+            spinner.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            spinner.centerYAnchor.constraint(equalTo: view.centerYAnchor)
         ])
     }
     
@@ -132,10 +141,25 @@ class ViewController: UIViewController {
         return button
     }()
     
+    lazy var spinner: UIActivityIndicatorView = {
+        let spinner = UIActivityIndicatorView(style: .large)
+        spinner.translatesAutoresizingMaskIntoConstraints = false
+        
+        return spinner
+    }()
+    
+    lazy var searchBar: UISearchBar = {
+        let searchbar = UISearchBar()
+        searchbar.translatesAutoresizingMaskIntoConstraints = false
+        searchbar.barTintColor = UIConfiguration.definitionCardBackground
+        searchbar.placeholder = "Search for word"
+        return searchbar
+    }()
+    
     @objc private func didTapRefresh() {
         guard let randomWord = randomize() else { return }
         updateCardView(newWord: randomWord)
-        
+                
         //Network Call
         guard let wordURL = URL(string: "https://wordsapiv1.p.rapidapi.com/words/example") else {
             print("Invalid URL")
@@ -151,6 +175,8 @@ class ViewController: UIViewController {
         urlRequest.httpMethod = "GET"
         urlRequest.allHTTPHeaderFields = headers
         
+        //spinner.startAnimating()
+        
         URLSession.shared.dataTask(with: urlRequest) { data, response, error in
             
             guard let data = data, error == nil else {
@@ -163,7 +189,6 @@ class ViewController: UIViewController {
             } catch {
                 print("Network Call Failed😞")
             }
-            
         }.resume()
     }
     

@@ -10,6 +10,7 @@
 		D8304CA828067A7000FFE4DD /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8304CA728067A7000FFE4DD /* DetailViewController.swift */; };
 		D8304CAA2807E6B500FFE4DD /* DetailViewCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8304CA92807E6B500FFE4DD /* DetailViewCustomCell.swift */; };
 		D8304CAC280E66C000FFE4DD /* WordModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8304CAB280E66C000FFE4DD /* WordModel.swift */; };
+		D8304CAE280F235400FFE4DD /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8304CAD280F235300FFE4DD /* NetworkManager.swift */; };
 		D8351A0D27FBBD6900E3739E /* HomeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8351A0C27FBBD6900E3739E /* HomeTableViewCell.swift */; };
 		D8695A8927DACC3F0024BC63 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8695A8827DACC3F0024BC63 /* AppDelegate.swift */; };
 		D8695A8B27DACC3F0024BC63 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8695A8A27DACC3F0024BC63 /* SceneDelegate.swift */; };
@@ -24,6 +25,7 @@
 		D8304CA728067A7000FFE4DD /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		D8304CA92807E6B500FFE4DD /* DetailViewCustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewCustomCell.swift; sourceTree = "<group>"; };
 		D8304CAB280E66C000FFE4DD /* WordModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordModel.swift; sourceTree = "<group>"; };
+		D8304CAD280F235300FFE4DD /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		D8351A0C27FBBD6900E3739E /* HomeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableViewCell.swift; sourceTree = "<group>"; };
 		D8695A8527DACC3F0024BC63 /* Werrdd App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Werrdd App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8695A8827DACC3F0024BC63 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -47,6 +49,41 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D8304CAF280F236300FFE4DD /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				D8304CAD280F235300FFE4DD /* NetworkManager.swift */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		D8304CB0280F237300FFE4DD /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				D8304CA92807E6B500FFE4DD /* DetailViewCustomCell.swift */,
+				D8304CA728067A7000FFE4DD /* DetailViewController.swift */,
+				D8351A0C27FBBD6900E3739E /* HomeTableViewCell.swift */,
+				D8695A9C27DAEDCB0024BC63 /* DefinitionCard.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		D8304CB1280F238500FFE4DD /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				D8304CAB280E66C000FFE4DD /* WordModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		D8304CB2280F23CF00FFE4DD /* UI Elements */ = {
+			isa = PBXGroup;
+			children = (
+				D8695A9E27EE3E700024BC63 /* UIConfiguration.swift */,
+			);
+			path = "UI Elements";
+			sourceTree = "<group>";
+		};
 		D8695A7C27DACC3E0024BC63 = {
 			isa = PBXGroup;
 			children = (
@@ -69,15 +106,13 @@
 				D8695A8827DACC3F0024BC63 /* AppDelegate.swift */,
 				D8695A8A27DACC3F0024BC63 /* SceneDelegate.swift */,
 				D8695A8C27DACC3F0024BC63 /* ViewController.swift */,
+				D8304CB2280F23CF00FFE4DD /* UI Elements */,
+				D8304CB1280F238500FFE4DD /* Models */,
+				D8304CB0280F237300FFE4DD /* Views */,
+				D8304CAF280F236300FFE4DD /* Networking */,
 				D8695A9127DACC420024BC63 /* Assets.xcassets */,
 				D8695A9327DACC420024BC63 /* LaunchScreen.storyboard */,
 				D8695A9627DACC420024BC63 /* Info.plist */,
-				D8695A9C27DAEDCB0024BC63 /* DefinitionCard.swift */,
-				D8695A9E27EE3E700024BC63 /* UIConfiguration.swift */,
-				D8351A0C27FBBD6900E3739E /* HomeTableViewCell.swift */,
-				D8304CA728067A7000FFE4DD /* DetailViewController.swift */,
-				D8304CA92807E6B500FFE4DD /* DetailViewCustomCell.swift */,
-				D8304CAB280E66C000FFE4DD /* WordModel.swift */,
 			);
 			path = "Werrdd App";
 			sourceTree = "<group>";
@@ -154,6 +189,7 @@
 			files = (
 				D8351A0D27FBBD6900E3739E /* HomeTableViewCell.swift in Sources */,
 				D8304CAC280E66C000FFE4DD /* WordModel.swift in Sources */,
+				D8304CAE280F235400FFE4DD /* NetworkManager.swift in Sources */,
 				D8695A9F27EE3E700024BC63 /* UIConfiguration.swift in Sources */,
 				D8695A8D27DACC3F0024BC63 /* ViewController.swift in Sources */,
 				D8695A8927DACC3F0024BC63 /* AppDelegate.swift in Sources */,

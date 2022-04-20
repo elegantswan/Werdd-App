@@ -21,45 +21,45 @@ class DetailViewController: UIViewController {
     }
     
     //MARK: - UI Elements
-//    lazy var definitionCard : UIView = {
-//        let card = UIView()
-//        card.translatesAutoresizingMaskIntoConstraints = false
-//        card.layer.cornerRadius = 25
-//        card.backgroundColor = UIConfiguration.definitionCardBackground
-//        return card
-//    }()
-//
-//    lazy var synonymsCard : UIView = {
-//        let card = UIView()
-//        card.translatesAutoresizingMaskIntoConstraints = false
-//        card.layer.cornerRadius = 25
-//        card.backgroundColor = UIConfiguration.definitionCardBackground
-//        return card
-//    }()
-//
-//    lazy var antonymsCard : UIView = {
-//        let card = UIView()
-//        card.translatesAutoresizingMaskIntoConstraints = false
-//        card.layer.cornerRadius = 25
-//        card.backgroundColor = UIConfiguration.definitionCardBackground
-//        return card
-//    }()
-//
-//    lazy var exampleCard : UIView = {
-//        let card = UIView()
-//        card.translatesAutoresizingMaskIntoConstraints = false
-//        card.layer.cornerRadius = 25
-//        card.backgroundColor = UIConfiguration.definitionCardBackground
-//        return card
-//    }()
+    lazy var definitionCard : UIView = {
+        let card = UIView()
+        card.translatesAutoresizingMaskIntoConstraints = false
+        card.layer.cornerRadius = 25
+        card.backgroundColor = UIConfiguration.definitionCardBackground
+        return card
+    }()
+
+    lazy var synonymsCard : UIView = {
+        let card = UIView()
+        card.translatesAutoresizingMaskIntoConstraints = false
+        card.layer.cornerRadius = 25
+        card.backgroundColor = UIConfiguration.definitionCardBackground
+        return card
+    }()
+
+    lazy var antonymsCard : UIView = {
+        let card = UIView()
+        card.translatesAutoresizingMaskIntoConstraints = false
+        card.layer.cornerRadius = 25
+        card.backgroundColor = UIConfiguration.definitionCardBackground
+        return card
+    }()
+
+    lazy var exampleCard : UIView = {
+        let card = UIView()
+        card.translatesAutoresizingMaskIntoConstraints = false
+        card.layer.cornerRadius = 25
+        card.backgroundColor = UIConfiguration.definitionCardBackground
+        return card
+    }()
     
-    let definitionCard = DetailViewCustomCell(title: "definition", body: "hello 123")
-
-    let synonymsCard = DetailViewCustomCell(title: "definition", body: "hello 123")
-
-    let antonymsCard = DetailViewCustomCell(title: "definition", body: "hello 123")
-
-    let exampleCard = DetailViewCustomCell(title: "definition", body: "hello 123")
+//    let definitionCard = DetailViewCustomCell(title: "definition", body: "hello 123")
+//
+//    let synonymsCard = DetailViewCustomCell(title: "definition", body: "hello 123")
+//
+//    let antonymsCard = DetailViewCustomCell(title: "definition", body: "hello 123")
+//
+//    let exampleCard = DetailViewCustomCell(title: "definition", body: "hello 123")
     
     private func setupUI() {
         
