@@ -35,20 +35,26 @@ class ViewController: UIViewController {
         addSubViews()
         tableView.delegate = self
         tableView.dataSource = self
+        //tableView.tableHeaderView = searchBar
+        
     }
     
     private func addSubViews() {
+
+        view.addSubview(stackView)
+        stackView.addArrangedSubview(searchBar)
+        stackView.addArrangedSubview(tableView)
+        
         view.addSubview(titleLabel)
         view.addSubview(definitionCard)
         view.addSubview(word)
         view.addSubview(wordType)
         view.addSubview(definition)
         view.addSubview(refreshButton)
-        view.addSubview(tableView)
+        //view.addSubview(tableView)
         view.addSubview(spinner)
-        view.addSubview(searchBar)
-        
-        tableView.tableHeaderView = searchBar
+        //view.addSubview(searchBar)
+
         
         NSLayoutConstraint.activate([
             titleLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
@@ -66,17 +72,30 @@ class ViewController: UIViewController {
             definition.trailingAnchor.constraint(equalTo: definitionCard.trailingAnchor, constant: -5),
             refreshButton.bottomAnchor.constraint(equalTo: definitionCard.bottomAnchor, constant: -10),
             refreshButton.trailingAnchor.constraint(equalTo: definitionCard.trailingAnchor, constant: -10),
-            tableView.topAnchor.constraint(equalTo: definitionCard.bottomAnchor, constant: 5),
-            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
-            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
-            tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-            searchBar.topAnchor.constraint(equalTo: tableView.topAnchor, constant: 10),
-            searchBar.leadingAnchor.constraint(equalTo: tableView.leadingAnchor, constant: 10),
-            searchBar.trailingAnchor.constraint(equalTo: tableView.trailingAnchor, constant: -10),
+            stackView.topAnchor.constraint(equalTo: definitionCard.bottomAnchor, constant: 15),
+            stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            stackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+//            searchBar.topAnchor.constraint(equalTo: definitionCard.bottomAnchor, constant: 10),
+//            searchBar.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
+//            searchBar.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
+//            tableView.topAnchor.constraint(equalTo: searchBar.bottomAnchor),
+//            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
+//            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
+//            tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
             spinner.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             spinner.centerYAnchor.constraint(equalTo: view.centerYAnchor)
         ])
     }
+    
+    let stackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.axis = .vertical
+        stackView.layer.cornerRadius = 25
+        stackView.distribution = .fill
+        return stackView
+    }()
     
     lazy var tableView: UITableView = {
         let tableView = UITableView()
@@ -144,21 +163,37 @@ class ViewController: UIViewController {
     lazy var spinner: UIActivityIndicatorView = {
         let spinner = UIActivityIndicatorView(style: .large)
         spinner.translatesAutoresizingMaskIntoConstraints = false
-        
         return spinner
     }()
     
     lazy var searchBar: UISearchBar = {
         let searchbar = UISearchBar()
         searchbar.translatesAutoresizingMaskIntoConstraints = false
-        searchbar.barTintColor = UIConfiguration.definitionCardBackground
+        searchbar.barTintColor = UIConfiguration.backgroundColor
         searchbar.placeholder = "Search for word"
+        searchbar.layer.cornerRadius = 25
         return searchbar
     }()
+    
+    
+    
+    func fetchData(url: String) {
+        RESTHelper.fetchWord(url: url) { (response: Word, error) in
+            if error != nil {
+                print("Network Call Failed😞")
+            } else {
+                print(response.word)
+            }
+        }
+    }
     
     @objc private func didTapRefresh() {
         guard let randomWord = randomize() else { return }
         updateCardView(newWord: randomWord)
+        
+        let url = Constants.base_url + "example"
+        
+        fetchData(url: url)
                 
         //Network Call
         guard let wordURL = URL(string: "https://wordsapiv1.p.rapidapi.com/words/example") else {
@@ -226,7 +261,10 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
         
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        navigationController?.pushViewController(DetailViewController(title: words[indexPath.row].word), animated: true)
+        let selectedWord = words[indexPath.row]
+        
+        //Have to figure out how to get this to conform to Word model
+//        navigationController?.pushViewController(DetailViewController(word: selectedWord, wordDetail: selectedWord, selectedWord: selectedWord.word), animated: true)
         
         tableView.deselectRow(at: indexPath, animated: true)
     }

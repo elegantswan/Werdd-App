@@ -9,13 +9,68 @@ import UIKit
 
 class DetailViewCustomCell: UIView {
     
-    init(title: String, body: String) {
-        
+    //MARK: - UIElements
+    let mainStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.axis = .vertical
+        stackView.distribution = .fill
+        stackView.spacing = 20
+        stackView.alignment = .leading
+        return stackView
+    }()
+    
+    let definitionStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.axis = .vertical
+        stackView.distribution = .fillProportionally
+        return stackView
+    }()
+    
+    let titleLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont(name: "GillSans-Bold", size: 20)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+    let bodyLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont(name: "GillSans-Bold", size: 20)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+    let partOfSpeechLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.textColor = .white
+        return label
+    }()
+    
+    //MARK: - Property Observers
+    var title: String? {
+        didSet {
+            titleLabel.text = title
+        }
+    }
+    
+    var body: String? {
+        didSet {
+            bodyLabel.text = body
+        }
+    }
+    
+    var partOfSpeech: String? {
+        didSet {
+            partOfSpeechLabel.text = partOfSpeech
+        }
+    }
+    
+    //MARK: - Initializer
+    init(backgroundColor: UIColor) {
         super.init(frame: .zero)
-        
-        self.title.text = title
-        self.body.text = body
-        
         setupUI()
     }
     
@@ -23,43 +78,32 @@ class DetailViewCustomCell: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    //MARK: - UIElements
-//    lazy var definitionCard : UIView = {
-//        let card = UIView()
-//        card.translatesAutoresizingMaskIntoConstraints = false
-//        card.layer.cornerRadius = 25
-//        card.backgroundColor = UIConfiguration.definitionCardBackground
-//        return card
-//    }()
-    
-    lazy var title: UILabel = {
-        let label = UILabel()
-        label.font = UIFont(name: "GillSans-Bold", size: 20)
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
-    
-    lazy var body: UILabel = {
-        let label = UILabel()
-        label.font = UIFont(name: "GillSans-Bold", size: 20)
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
-    
+    //MARK: - UI Setup
     private func setupUI() {
+        partOfSpeechLabel.isHidden = true
+        layer.cornerRadius = 20
+        setupDefinitionStackView()
+        setupStackView()
+    }
+    
+    private func setupDefinitionStackView() {
+        definitionStackView.addArrangedSubview(partOfSpeechLabel)
+        definitionStackView.addArrangedSubview(bodyLabel)
+        mainStackView.addArrangedSubview(definitionStackView)
+        mainStackView.addArrangedSubview(titleLabel)
+    }
+    
+    private func addTitleLabel() {
         
-        addSubview(title)
-        addSubview(body)
-        
+    }
+    
+    private func setupStackView() {
+        addSubview(mainStackView)
         NSLayoutConstraint.activate([
-            
-            title.topAnchor.constraint(equalTo: topAnchor, constant: 10),
-            title.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 5),
-            title.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -5),
-            
-            body.topAnchor.constraint(equalTo: title.bottomAnchor, constant: 10),
-            body.leadingAnchor.constraint(equalTo: trailingAnchor, constant: 5),
-            body.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -5)
+            mainStackView.topAnchor.constraint(equalTo: topAnchor, constant: 20),
+            mainStackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
+            mainStackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
+            mainStackView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -20)
         ])
     }
 }

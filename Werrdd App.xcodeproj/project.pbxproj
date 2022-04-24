@@ -11,6 +11,8 @@
 		D8304CAA2807E6B500FFE4DD /* DetailViewCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8304CA92807E6B500FFE4DD /* DetailViewCustomCell.swift */; };
 		D8304CAC280E66C000FFE4DD /* WordModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8304CAB280E66C000FFE4DD /* WordModel.swift */; };
 		D8304CAE280F235400FFE4DD /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8304CAD280F235300FFE4DD /* NetworkManager.swift */; };
+		D8304CB82813B12B00FFE4DD /* RESTHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8304CB72813B12B00FFE4DD /* RESTHelper.swift */; };
+		D8304CBA2813B19D00FFE4DD /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8304CB92813B19D00FFE4DD /* Constants.swift */; };
 		D8351A0D27FBBD6900E3739E /* HomeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8351A0C27FBBD6900E3739E /* HomeTableViewCell.swift */; };
 		D8695A8927DACC3F0024BC63 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8695A8827DACC3F0024BC63 /* AppDelegate.swift */; };
 		D8695A8B27DACC3F0024BC63 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8695A8A27DACC3F0024BC63 /* SceneDelegate.swift */; };
@@ -26,6 +28,8 @@
 		D8304CA92807E6B500FFE4DD /* DetailViewCustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewCustomCell.swift; sourceTree = "<group>"; };
 		D8304CAB280E66C000FFE4DD /* WordModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordModel.swift; sourceTree = "<group>"; };
 		D8304CAD280F235300FFE4DD /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		D8304CB72813B12B00FFE4DD /* RESTHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RESTHelper.swift; sourceTree = "<group>"; };
+		D8304CB92813B19D00FFE4DD /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		D8351A0C27FBBD6900E3739E /* HomeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableViewCell.swift; sourceTree = "<group>"; };
 		D8695A8527DACC3F0024BC63 /* Werrdd App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Werrdd App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8695A8827DACC3F0024BC63 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -52,6 +56,8 @@
 		D8304CAF280F236300FFE4DD /* Networking */ = {
 			isa = PBXGroup;
 			children = (
+				D8304CBB2813B1C200FFE4DD /* Utils */,
+				D8304CB52813B0EC00FFE4DD /* Helpers */,
 				D8304CAD280F235300FFE4DD /* NetworkManager.swift */,
 			);
 			path = Networking;
@@ -82,6 +88,22 @@
 				D8695A9E27EE3E700024BC63 /* UIConfiguration.swift */,
 			);
 			path = "UI Elements";
+			sourceTree = "<group>";
+		};
+		D8304CB52813B0EC00FFE4DD /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				D8304CB72813B12B00FFE4DD /* RESTHelper.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		D8304CBB2813B1C200FFE4DD /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				D8304CB92813B19D00FFE4DD /* Constants.swift */,
+			);
+			path = Utils;
 			sourceTree = "<group>";
 		};
 		D8695A7C27DACC3E0024BC63 = {
@@ -187,6 +209,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D8304CB82813B12B00FFE4DD /* RESTHelper.swift in Sources */,
 				D8351A0D27FBBD6900E3739E /* HomeTableViewCell.swift in Sources */,
 				D8304CAC280E66C000FFE4DD /* WordModel.swift in Sources */,
 				D8304CAE280F235400FFE4DD /* NetworkManager.swift in Sources */,
@@ -197,6 +220,7 @@
 				D8695A8B27DACC3F0024BC63 /* SceneDelegate.swift in Sources */,
 				D8304CAA2807E6B500FFE4DD /* DetailViewCustomCell.swift in Sources */,
 				D8304CA828067A7000FFE4DD /* DetailViewController.swift in Sources */,
+				D8304CBA2813B19D00FFE4DD /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -5,7 +5,7 @@
 //  Created by Kevin Phan on 4/19/22.
 //
 
-import UIKit
+import Foundation
 
 class NetworkManager {
     
