@@ -6,24 +6,73 @@
 //
 
 import Foundation
+import UIKit
+
+enum Error: LocalizedError {
+    case invalidURL
+    case invalidData
+    
+    var errorDescription: String? {
+        switch self {
+        case .invalidURL:
+            return "Invalid URL"
+        case .invalidData:
+            return "Invalid Data"
+        }
+    }
+}
 
 class NetworkManager {
     
-    public func fetchWord(completion: @escaping (Word, Error) -> Void) {
+    static let shared = NetworkManager()
+    
+    func fetchRandomWord(completion: @escaping (Result<Word, Error>) -> Void) {
         
-        guard let wordURL = URL(string: "https://wordsapiv1.p.rapidapi.com/words/example") else {
-            print("Invalid URL")
+        guard let url = URL(string: Constants.randomBaseURL) else {
+            completion(.failure(Error.invalidURL))
             return
         }
         
         let headers = [
-            "X-RapidAPI-Host": "wordsapiv1.p.rapidapi.com",
-            "X-RapidAPI-Key": "14acfc5fe1msh8077fb299df28a6p169026jsna0fbc48d995b"
+            "X-RapidAPI-Host": Constants.hostURL,
+            "X-RapidAPI-Key": Constants.weatherApiKey
+        ]
+        
+        var urlRequest = URLRequest(url: url)
+        urlRequest.allHTTPHeaderFields = headers
+        urlRequest.httpMethod = "GET"
+        
+        URLSession.shared.dataTask(with: urlRequest) { data, response, error in
+            
+            guard let data = data, error == nil else {
+                completion(.failure(.invalidURL))
+                return
+            }
+            
+            do {
+                let randomWord = try JSONDecoder().decode(Word.self, from: data)
+                completion(.success(randomWord))
+            } catch {
+                completion(.failure(Error.invalidData))
+            }
+        }.resume()
+    }
+    
+    func fetchWord(completion: @escaping (Result<Word, Error>) -> Void) {
+        
+        guard let wordURL = URL(string: Constants.baseURL) else {
+            completion(.failure(Error.invalidURL))
+            return
+        }
+        
+        let headers = [
+            "X-RapidAPI-Host": Constants.hostURL,
+            "X-RapidAPI-Key": Constants.weatherApiKey
         ]
         
         var urlRequest = URLRequest(url: wordURL)
-        urlRequest.httpMethod = "GET"
         urlRequest.allHTTPHeaderFields = headers
+        urlRequest.httpMethod = "GET"
         
         URLSession.shared.dataTask(with: urlRequest) { data, response, error in
             

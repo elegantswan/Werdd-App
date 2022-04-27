@@ -9,25 +9,21 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    struct wordModel {
-        let word: String
-        let definition: String
-        let partOfSpeech: String
-    }
+    var words = [Word]()
     
-    let words: [wordModel] = [
-        wordModel(word: "alleviate", definition: ": to make (something, such as pain or suffering) more bearable", partOfSpeech: "verb"),
-        wordModel(word: "slosh", definition: ": to flounder or splash through water, mud, or slush", partOfSpeech: "noun"),
-        wordModel(word: "oligarchy", definition: ": a government in which a small group exercises control especially for corrupt and selfish purposes", partOfSpeech: "noun"),
-        wordModel(word: "stint", definition: ": a period of time spent at a particular activity", partOfSpeech: "noun"),
-        wordModel(word: "ETA", definition: ": estimated time of arrival", partOfSpeech: "abbreviation"),
-        wordModel(word: "culture", definition: ": the customary beliefs, social forms, and material traits of a racial, religious, or social group", partOfSpeech: "noun"),
-        wordModel(word: "accountability", definition: ": the quality or state of being accountable", partOfSpeech: "noun"),
-        wordModel(word: "waka", definition: ": a Japanese poem consisting of 31 syllables in 5 lines, with 5 syllables in the first and third lines and 7 in the others", partOfSpeech: "noun"),
-        wordModel(word: "verdurous", definition: ": rich in verdure; freshly green; verdant", partOfSpeech: "adjective"),
-        wordModel(word: "felicitous", definition: ": well-suited for the occasion, as an action, manner, or expression; apt; appropriate", partOfSpeech: "adjective"),
-        wordModel(word: "transcendental", definition: ": abstract or metaphysical", partOfSpeech: "adjective")
-    ]
+//    let words: [tempWordModel] = [
+//        tempWordModel(word: "alleviate", definition: ": to make (something, such as pain or suffering) more bearable", partOfSpeech: "verb"),
+//        tempWordModel(word: "slosh", definition: ": to flounder or splash through water, mud, or slush", partOfSpeech: "noun"),
+//        tempWordModel(word: "oligarchy", definition: ": a government in which a small group exercises control especially for corrupt and selfish purposes", partOfSpeech: "noun"),
+//        tempWordModel(word: "stint", definition: ": a period of time spent at a particular activity", partOfSpeech: "noun"),
+//        tempWordModel(word: "ETA", definition: ": estimated time of arrival", partOfSpeech: "abbreviation"),
+//        tempWordModel(word: "culture", definition: ": the customary beliefs, social forms, and material traits of a racial, religious, or social group", partOfSpeech: "noun"),
+//        tempWordModel(word: "accountability", definition: ": the quality or state of being accountable", partOfSpeech: "noun"),
+//        tempWordModel(word: "waka", definition: ": a Japanese poem consisting of 31 syllables in 5 lines, with 5 syllables in the first and third lines and 7 in the others", partOfSpeech: "noun"),
+//        tempWordModel(word: "verdurous", definition: ": rich in verdure; freshly green; verdant", partOfSpeech: "adjective"),
+//        tempWordModel(word: "felicitous", definition: ": well-suited for the occasion, as an action, manner, or expression; apt; appropriate", partOfSpeech: "adjective"),
+//        tempWordModel(word: "transcendental", definition: ": abstract or metaphysical", partOfSpeech: "adjective")
+//    ]
         
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,8 +31,6 @@ class ViewController: UIViewController {
         addSubViews()
         tableView.delegate = self
         tableView.dataSource = self
-        //tableView.tableHeaderView = searchBar
-        
     }
     
     private func addSubViews() {
@@ -57,7 +51,7 @@ class ViewController: UIViewController {
 
         
         NSLayoutConstraint.activate([
-            titleLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
+            titleLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             titleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             definitionCard.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 10),
             definitionCard.centerXAnchor.constraint(equalTo: view.centerXAnchor),
@@ -88,6 +82,7 @@ class ViewController: UIViewController {
         ])
     }
     
+    //MARK: - UI Properties
     let stackView: UIStackView = {
         let stackView = UIStackView()
         stackView.translatesAutoresizingMaskIntoConstraints = false
@@ -126,7 +121,7 @@ class ViewController: UIViewController {
         let label = UILabel()
         label.font = UIFont(name: "GillSans-Bold", size: 20)
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "Michael Jordan"
+        label.text = "Random Word"
         return label
     }()
     
@@ -143,7 +138,7 @@ class ViewController: UIViewController {
         definition.translatesAutoresizingMaskIntoConstraints = false
         definition.lineBreakMode = .byWordWrapping
         definition.numberOfLines = 5
-        definition.text = "🐐🐐🐐🐐🐐🐐🐐🐐🐐🐐🐐🐐🐐🐐🐐🐐🐐🐐🐐🐐🐐🐐🐐🐐🐐🐐🐐🐐🐐🐐🐐🐐🐐🐐🐐🐐🐐🐐🐐🐐🐐🐐"
+        definition.text = "Press refresh button to generate a new word!"
         definition.numberOfLines = 0
         definition.lineBreakMode = .byTruncatingTail
         return definition
@@ -175,66 +170,20 @@ class ViewController: UIViewController {
         return searchbar
     }()
     
-    
-    
-    func fetchData(url: String) {
-        RESTHelper.fetchWord(url: url) { (response: Word, error) in
-            if error != nil {
-                print("Network Call Failed😞")
-            } else {
-                print(response.word)
-            }
-        }
-    }
-    
     @objc private func didTapRefresh() {
-        guard let randomWord = randomize() else { return }
-        updateCardView(newWord: randomWord)
-        
-        let url = Constants.base_url + "example"
-        
-        fetchData(url: url)
-                
-        //Network Call
-        guard let wordURL = URL(string: "https://wordsapiv1.p.rapidapi.com/words/example") else {
-            print("Invalid URL")
-            return
+    
+        NetworkManager.shared.fetchRandomWord { [weak self] result in
+            switch result {
+            case .success(let result):
+                DispatchQueue.main.async {
+                    self?.word.text = result.word
+                    self?.definition.text = result.results?.first?.definition
+                    self?.wordType.text = result.results?.first?.partOfSpeech
+                }
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
         }
-        
-        let headers = [
-            "X-RapidAPI-Host": "wordsapiv1.p.rapidapi.com",
-            "X-RapidAPI-Key": "14acfc5fe1msh8077fb299df28a6p169026jsna0fbc48d995b"
-        ]
-        
-        var urlRequest = URLRequest(url: wordURL)
-        urlRequest.httpMethod = "GET"
-        urlRequest.allHTTPHeaderFields = headers
-        
-        //spinner.startAnimating()
-        
-        URLSession.shared.dataTask(with: urlRequest) { data, response, error in
-            
-            guard let data = data, error == nil else {
-                return
-            }
-            
-            do {
-                let word = try JSONDecoder().decode(Word.self, from: data)
-                print(word)
-            } catch {
-                print("Network Call Failed😞")
-            }
-        }.resume()
-    }
-    
-    func randomize() -> wordModel? {
-        return words.randomElement()
-    }
-    
-    func updateCardView(newWord word: wordModel) {
-        self.word.text = word.word
-        self.definition.text = word.definition
-        self.wordType.text = word.partOfSpeech
     }
 }
 
@@ -250,9 +199,9 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
             return UITableViewCell()
         }
         
-        cell.word.text = words[indexPath.row].word
-        cell.partOfSpeech.text = words[indexPath.row].partOfSpeech
-        cell.definition.text = words[indexPath.row].definition
+//        cell.word.text = words[indexPath.row].word
+//        cell.partOfSpeech.text = words[indexPath.row].results
+//        cell.definition.text = words[indexPath.row].definition
         
         cell.backgroundColor = UIConfiguration.definitionCardBackground
         

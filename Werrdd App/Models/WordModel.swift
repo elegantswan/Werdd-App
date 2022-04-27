@@ -9,16 +9,14 @@ import UIKit
 
 struct Word: Codable {
     let word: String
-    let results: [Result]
-    let syllables: Syllables
+    let results: [WordDetail]?
 }
 
-struct Result: Codable {
-    let definition, partOfSpeech: String
-    let synonyms, typeOf: [String]
+struct WordDetail: Codable {
+    let definition: String?
+    let partOfSpeech: String?
+    let synonyms: [String]?
+    let antonyms: [String]?
+    let examples: [String]?
 }
 
-struct Syllables: Codable {
-    let count: Int
-    let list: [String]
-}

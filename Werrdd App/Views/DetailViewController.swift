@@ -10,8 +10,7 @@ import UIKit
 class DetailViewController: UIViewController {
    
     //MARK: - Properties
-    let word: Word
-    let wordDetails: Result
+    let wordDetails: WordDetail
     let selectedWord: String
     
     //MARK: - Lifecycle
@@ -22,8 +21,7 @@ class DetailViewController: UIViewController {
     }
     
     //MARK: - Initializer
-    init(word: Word, wordDetails: Result ,selectedWord: String) {
-        self.word = word
+    init(wordDetails: WordDetail ,selectedWord: String) {
         self.wordDetails = wordDetails
         self.selectedWord = selectedWord
         
@@ -56,7 +54,7 @@ class DetailViewController: UIViewController {
         let card = DetailViewCustomCell(backgroundColor: UIConfiguration.definitionCardBackground)
         card.translatesAutoresizingMaskIntoConstraints = false
         card.title = "Synonyms"
-        card.body = wordDetails.synonyms.joined(separator: ", ")
+        card.body = wordDetails.synonyms?.joined(separator: ", ")
         return card
     }()
 
@@ -64,7 +62,7 @@ class DetailViewController: UIViewController {
         let card = DetailViewCustomCell(backgroundColor: UIConfiguration.definitionCardBackground)
         card.translatesAutoresizingMaskIntoConstraints = false
         card.title = "Antonyms"
-        card.body = wordDetails.synonyms.joined(separator: ", ")
+        card.body = wordDetails.synonyms?.joined(separator: ", ")
         return card
     }()
 
@@ -72,7 +70,7 @@ class DetailViewController: UIViewController {
         let card = DetailViewCustomCell(backgroundColor: UIConfiguration.definitionCardBackground)
         card.translatesAutoresizingMaskIntoConstraints = false
         card.title = "Examples"
-        card.body = wordDetails.synonyms.joined(separator: ", ")
+        card.body = wordDetails.synonyms?.joined(separator: ", ")
         return card
     }()
     
