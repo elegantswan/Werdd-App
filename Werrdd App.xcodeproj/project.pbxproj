@@ -13,6 +13,7 @@
 		D8304CAE280F235400FFE4DD /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8304CAD280F235300FFE4DD /* NetworkManager.swift */; };
 		D8304CB82813B12B00FFE4DD /* RESTHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8304CB72813B12B00FFE4DD /* RESTHelper.swift */; };
 		D8304CBA2813B19D00FFE4DD /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8304CB92813B19D00FFE4DD /* Constants.swift */; };
+		D8304CBD2818F34B00FFE4DD /* SpinnerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8304CBC2818F34B00FFE4DD /* SpinnerViewController.swift */; };
 		D8351A0D27FBBD6900E3739E /* HomeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8351A0C27FBBD6900E3739E /* HomeTableViewCell.swift */; };
 		D8695A8927DACC3F0024BC63 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8695A8827DACC3F0024BC63 /* AppDelegate.swift */; };
 		D8695A8B27DACC3F0024BC63 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8695A8A27DACC3F0024BC63 /* SceneDelegate.swift */; };
@@ -30,6 +31,7 @@
 		D8304CAD280F235300FFE4DD /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		D8304CB72813B12B00FFE4DD /* RESTHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RESTHelper.swift; sourceTree = "<group>"; };
 		D8304CB92813B19D00FFE4DD /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		D8304CBC2818F34B00FFE4DD /* SpinnerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpinnerViewController.swift; sourceTree = "<group>"; };
 		D8351A0C27FBBD6900E3739E /* HomeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableViewCell.swift; sourceTree = "<group>"; };
 		D8695A8527DACC3F0024BC63 /* Werrdd App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Werrdd App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8695A8827DACC3F0024BC63 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -66,10 +68,9 @@
 		D8304CB0280F237300FFE4DD /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				D8304CA92807E6B500FFE4DD /* DetailViewCustomCell.swift */,
 				D8304CA728067A7000FFE4DD /* DetailViewController.swift */,
-				D8351A0C27FBBD6900E3739E /* HomeTableViewCell.swift */,
 				D8695A9C27DAEDCB0024BC63 /* DefinitionCard.swift */,
+				D8304CBC2818F34B00FFE4DD /* SpinnerViewController.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -106,6 +107,15 @@
 			path = Utils;
 			sourceTree = "<group>";
 		};
+		D8304CBE2818F36200FFE4DD /* Custom Cells */ = {
+			isa = PBXGroup;
+			children = (
+				D8304CA92807E6B500FFE4DD /* DetailViewCustomCell.swift */,
+				D8351A0C27FBBD6900E3739E /* HomeTableViewCell.swift */,
+			);
+			path = "Custom Cells";
+			sourceTree = "<group>";
+		};
 		D8695A7C27DACC3E0024BC63 = {
 			isa = PBXGroup;
 			children = (
@@ -128,6 +138,7 @@
 				D8695A8827DACC3F0024BC63 /* AppDelegate.swift */,
 				D8695A8A27DACC3F0024BC63 /* SceneDelegate.swift */,
 				D8695A8C27DACC3F0024BC63 /* ViewController.swift */,
+				D8304CBE2818F36200FFE4DD /* Custom Cells */,
 				D8304CB2280F23CF00FFE4DD /* UI Elements */,
 				D8304CB1280F238500FFE4DD /* Models */,
 				D8304CB0280F237300FFE4DD /* Views */,
@@ -212,6 +223,7 @@
 				D8304CB82813B12B00FFE4DD /* RESTHelper.swift in Sources */,
 				D8351A0D27FBBD6900E3739E /* HomeTableViewCell.swift in Sources */,
 				D8304CAC280E66C000FFE4DD /* WordModel.swift in Sources */,
+				D8304CBD2818F34B00FFE4DD /* SpinnerViewController.swift in Sources */,
 				D8304CAE280F235400FFE4DD /* NetworkManager.swift in Sources */,
 				D8695A9F27EE3E700024BC63 /* UIConfiguration.swift in Sources */,
 				D8695A8D27DACC3F0024BC63 /* ViewController.swift in Sources */,

@@ -58,19 +58,21 @@ class NetworkManager {
         }.resume()
     }
     
-    func fetchWord(completion: @escaping (Result<Word, Error>) -> Void) {
+    func fetchWord(word: String, completion: @escaping (Result<Word, Error>) -> Void) {
         
-        guard let wordURL = URL(string: Constants.baseURL) else {
+        guard let baseURL = URL(string: Constants.baseURL) else {
             completion(.failure(Error.invalidURL))
             return
         }
+        
+        let endpoint = baseURL.absoluteString + word
         
         let headers = [
             "X-RapidAPI-Host": Constants.hostURL,
             "X-RapidAPI-Key": Constants.weatherApiKey
         ]
         
-        var urlRequest = URLRequest(url: wordURL)
+        var urlRequest = URLRequest(url: URL(string: endpoint)!)
         urlRequest.allHTTPHeaderFields = headers
         urlRequest.httpMethod = "GET"
         
