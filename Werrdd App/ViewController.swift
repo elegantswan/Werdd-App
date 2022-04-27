@@ -171,6 +171,7 @@ class ViewController: UIViewController {
     }()
     
     @objc private func didTapRefresh() {
+        self.spinner.startAnimating()
     
         NetworkManager.shared.fetchRandomWord { [weak self] result in
             switch result {
@@ -179,6 +180,7 @@ class ViewController: UIViewController {
                     self?.word.text = result.word
                     self?.definition.text = result.results?.first?.definition
                     self?.wordType.text = result.results?.first?.partOfSpeech
+                    self?.spinner.stopAnimating()
                 }
             case .failure(let error):
                 print(error.localizedDescription)
