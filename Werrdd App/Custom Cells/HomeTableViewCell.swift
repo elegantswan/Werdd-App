@@ -18,7 +18,7 @@ class HomeTableViewCell: UITableViewCell {
 
     // MARK: - UI Properties
     
-    lazy var word: UILabel = {
+    lazy var wordTitle: UILabel = {
         let word = UILabel()
         word.translatesAutoresizingMaskIntoConstraints = false
         word.font = .boldSystemFont(ofSize: 20)
@@ -41,20 +41,20 @@ class HomeTableViewCell: UITableViewCell {
     }()
     
     private func setupUI() {
-        contentView.addSubview(word)
+        contentView.addSubview(wordTitle)
         contentView.addSubview(partOfSpeech)
         contentView.addSubview(definition)
         
         NSLayoutConstraint.activate([
-            word.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
-            word.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
-            word.bottomAnchor.constraint(equalTo: definition.topAnchor),
+            wordTitle.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
+            wordTitle.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
+            wordTitle.bottomAnchor.constraint(equalTo: definition.topAnchor),
             
             partOfSpeech.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 12),
             partOfSpeech.bottomAnchor.constraint(equalTo: definition.topAnchor),
-            partOfSpeech.leadingAnchor.constraint(equalTo: word.trailingAnchor, constant: 5),
+            partOfSpeech.leadingAnchor.constraint(equalTo: wordTitle.trailingAnchor, constant: 5),
             
-            definition.topAnchor.constraint(equalTo: word.bottomAnchor, constant: 10),
+            definition.topAnchor.constraint(equalTo: wordTitle.bottomAnchor, constant: 10),
             definition.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
             definition.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -5),
             definition.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10)
@@ -64,4 +64,10 @@ class HomeTableViewCell: UITableViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+//    func configure(word: WordDetail) {
+//        wordTitle.text = word.word
+//        partOfSpeech.text = word.results?.first?.partOfSpeech
+//        definition.text = word.results?.first?.definition
+//    }
 }
