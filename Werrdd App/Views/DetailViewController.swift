@@ -47,6 +47,7 @@ class DetailViewController: UIViewController {
         card.translatesAutoresizingMaskIntoConstraints = false
         card.title = "Definition"
         card.partOfSpeech = wordDetails.partOfSpeech
+        card.bodyLabel.text = wordDetails.definition
         return card
     }()
 

@@ -211,10 +211,16 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
         
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 
-        let selectedWord = wordDetails.first?.word
+        guard let selectedWord = wordDetails.first?.word else {
+            return
+        }
+        
+        guard let selectedDetails = wordDetails.first?.results?[indexPath.row] else {
+            return
+        }
 
         //Have to figure out how to get this to conform to Word model
-//        navigationController?.pushViewController(DetailViewController(word: selectedWord, wordDetail: selectedWord, selectedWord: selectedWord.word), animated: true)
+        navigationController?.pushViewController(DetailViewController(wordDetails: selectedDetails, selectedWord: selectedWord), animated: true)
 
         tableView.deselectRow(at: indexPath, animated: true)
     }
