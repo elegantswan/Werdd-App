@@ -46,6 +46,7 @@ class DetailViewController: UIViewController {
         let card = DetailViewCustomCell(backgroundColor: UIConfiguration.definitionCardBackground)
         card.translatesAutoresizingMaskIntoConstraints = false
         card.title = "Definition"
+        card.showPartOfSpeech()
         card.partOfSpeech = wordDetails.partOfSpeech
         card.bodyLabel.text = wordDetails.definition
         return card
@@ -55,7 +56,11 @@ class DetailViewController: UIViewController {
         let card = DetailViewCustomCell(backgroundColor: UIConfiguration.definitionCardBackground)
         card.translatesAutoresizingMaskIntoConstraints = false
         card.title = "Synonyms"
-        card.body = wordDetails.synonyms?.joined(separator: ", ")
+        if wordDetails.synonyms == nil {
+            card.body = "Can't seem to find any synonyms😔"
+        } else {
+            card.body = wordDetails.synonyms?.joined(separator: ", ")
+        }
         return card
     }()
 
@@ -63,7 +68,11 @@ class DetailViewController: UIViewController {
         let card = DetailViewCustomCell(backgroundColor: UIConfiguration.definitionCardBackground)
         card.translatesAutoresizingMaskIntoConstraints = false
         card.title = "Antonyms"
-        card.body = wordDetails.synonyms?.joined(separator: ", ")
+        if wordDetails.antonyms == nil {
+            card.body = "Can't seem to find any antonyms😔"
+        } else {
+            card.body = wordDetails.antonyms?.joined(separator: ", ")
+        }
         return card
     }()
 
@@ -71,7 +80,11 @@ class DetailViewController: UIViewController {
         let card = DetailViewCustomCell(backgroundColor: UIConfiguration.definitionCardBackground)
         card.translatesAutoresizingMaskIntoConstraints = false
         card.title = "Examples"
-        card.body = wordDetails.synonyms?.joined(separator: ", ")
+        if wordDetails.examples == nil {
+            card.body = "Can't seem to find any examples😔"
+        } else {
+            card.body = wordDetails.examples?.joined(separator: ", ")
+        }
         return card
     }()
     

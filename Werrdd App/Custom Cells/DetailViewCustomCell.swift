@@ -15,37 +15,33 @@ class DetailViewCustomCell: UIView {
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
         stackView.distribution = .fill
-        stackView.spacing = 20
+        stackView.spacing = 10
         stackView.alignment = .leading
-        return stackView
-    }()
-    
-    let definitionStackView: UIStackView = {
-        let stackView = UIStackView()
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.axis = .vertical
-        stackView.distribution = .fillProportionally
         return stackView
     }()
     
     let titleLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont(name: "GillSans-Bold", size: 20)
+        label.font = UIFont(name: "GillSans-Bold", size: 24)
         label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "Yeeeet"
         return label
     }()
     
     let bodyLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont(name: "GillSans-Bold", size: 20)
+        label.font = UIFont(name: "GillSans-Bold", size: 14)
+        label.text = "Property not avaialble"
         label.translatesAutoresizingMaskIntoConstraints = false
+        label.lineBreakMode = .byWordWrapping
+        label.numberOfLines = 0
         return label
     }()
     
     let partOfSpeechLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.textColor = .white
+        label.font = UIFont(name: "GillSans-Bold", size: 12)
         return label
     }()
     
@@ -71,6 +67,7 @@ class DetailViewCustomCell: UIView {
     //MARK: - Initializer
     init(backgroundColor: UIColor) {
         super.init(frame: .zero)
+        self.backgroundColor = backgroundColor
         setupUI()
     }
     
@@ -87,10 +84,9 @@ class DetailViewCustomCell: UIView {
     }
     
     private func setupDefinitionStackView() {
-        definitionStackView.addArrangedSubview(partOfSpeechLabel)
-        definitionStackView.addArrangedSubview(bodyLabel)
-        mainStackView.addArrangedSubview(definitionStackView)
+        mainStackView.addArrangedSubview(bodyLabel)
         mainStackView.addArrangedSubview(titleLabel)
+        mainStackView.addArrangedSubview(partOfSpeechLabel)
     }
     
     private func addTitleLabel() {
@@ -105,5 +101,9 @@ class DetailViewCustomCell: UIView {
             mainStackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
             mainStackView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -20)
         ])
+    }
+    
+    func showPartOfSpeech() {
+        partOfSpeechLabel.isHidden = false
     }
 }

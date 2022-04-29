@@ -110,9 +110,9 @@ class ViewController: UIViewController {
     private func addSubViews() {
 
         view.addSubview(stackView)
-        stackView.addArrangedSubview(searchBar)
         stackView.addArrangedSubview(tableView)
-        
+        stackView.addArrangedSubview(searchBar)
+
         view.addSubview(titleLabel)
         view.addSubview(definitionCard)
         view.addSubview(word)
@@ -140,13 +140,6 @@ class ViewController: UIViewController {
             stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             stackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-//            searchBar.topAnchor.constraint(equalTo: definitionCard.bottomAnchor, constant: 10),
-//            searchBar.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
-//            searchBar.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
-//            tableView.topAnchor.constraint(equalTo: searchBar.bottomAnchor),
-//            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
-//            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
-//            tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
         ])
     }
     
@@ -219,7 +212,6 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
             return
         }
 
-        //Have to figure out how to get this to conform to Word model
         navigationController?.pushViewController(DetailViewController(wordDetails: selectedDetails, selectedWord: selectedWord), animated: true)
 
         tableView.deselectRow(at: indexPath, animated: true)
