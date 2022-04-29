@@ -14,9 +14,15 @@ class DetailViewCustomCell: UIView {
         let stackView = UIStackView()
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
-        stackView.distribution = .fill
-        stackView.spacing = 10
         stackView.alignment = .leading
+        return stackView
+    }()
+    
+    let titleStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.axis = .horizontal
+        stackView.spacing = 5
         return stackView
     }()
     
@@ -30,7 +36,7 @@ class DetailViewCustomCell: UIView {
     
     let bodyLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont(name: "GillSans-Bold", size: 14)
+        label.font = UIFont(name: "GillSans", size: 14)
         label.text = "Property not avaialble"
         label.translatesAutoresizingMaskIntoConstraints = false
         label.lineBreakMode = .byWordWrapping
@@ -41,7 +47,7 @@ class DetailViewCustomCell: UIView {
     let partOfSpeechLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont(name: "GillSans-Bold", size: 12)
+        label.font = UIFont(name: "GillSans", size: 10)
         return label
     }()
     
@@ -84,9 +90,13 @@ class DetailViewCustomCell: UIView {
     }
     
     private func setupDefinitionStackView() {
+//        mainStackView.addArrangedSubview(partOfSpeechLabel)
+//        mainStackView.addArrangedSubview(titleLabel)
+        titleStackView.addArrangedSubview(titleLabel)
+        titleStackView.addArrangedSubview(partOfSpeechLabel)
+        mainStackView.addArrangedSubview(titleStackView)
         mainStackView.addArrangedSubview(bodyLabel)
-        mainStackView.addArrangedSubview(titleLabel)
-        mainStackView.addArrangedSubview(partOfSpeechLabel)
+       
     }
     
     private func addTitleLabel() {

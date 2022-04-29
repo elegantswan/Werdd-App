@@ -42,6 +42,17 @@ class DetailViewController: UIViewController {
         return stackView
     }()
     
+    let favoriteButton: UIButton = {
+        let buttonConfig = UIImage.SymbolConfiguration(pointSize: 30, weight: .bold)
+        let heartImage = UIImage(systemName: "heart", withConfiguration: buttonConfig)
+        
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setImage(heartImage, for: .normal)
+        button.tintColor = UIConfiguration.definitionCardBackground
+        return button
+    }()
+    
     lazy var definitionCard : DetailViewCustomCell = {
         let card = DetailViewCustomCell(backgroundColor: UIConfiguration.definitionCardBackground)
         card.translatesAutoresizingMaskIntoConstraints = false
@@ -91,6 +102,7 @@ class DetailViewController: UIViewController {
     //MARK: - UI Setup
     private func setupUI() {
         
+        view.addSubview(favoriteButton)
         view.addSubview(stackView)
         stackView.addArrangedSubview(definitionCard)
         stackView.addArrangedSubview(synonymsCard)
@@ -105,7 +117,10 @@ class DetailViewController: UIViewController {
                 
         NSLayoutConstraint.activate([
             
-            definitionCard.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 50),
+            favoriteButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            favoriteButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            
+            definitionCard.topAnchor.constraint(equalTo: favoriteButton.bottomAnchor, constant: 30),
             definitionCard.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             definitionCard.heightAnchor.constraint(equalToConstant: 150),
             definitionCard.widthAnchor.constraint(equalToConstant: 350),

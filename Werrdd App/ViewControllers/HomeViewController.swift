@@ -7,11 +7,12 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class HomeViewController: UIViewController {
     
     //MARK: - Properties
     let spinnerView = SpinnerViewController()
     var wordDetails = [Word]()
+    var favoriteWordsList = [Word]()
     
     //MARK: - UI Properties
     let stackView: UIStackView = {
@@ -41,6 +42,18 @@ class ViewController: UIViewController {
         label.font = UIFont.preferredFont(forTextStyle: .largeTitle)
         label.text = "Werrdd"
         return label
+    }()
+    
+    lazy var favoritesListButton: UIButton = {
+        let buttonConfig = UIImage.SymbolConfiguration(pointSize: 30, weight: .bold)
+        let listImage = UIImage(systemName: "list.star", withConfiguration: buttonConfig)
+        
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setImage(listImage, for: .normal)
+        button.tintColor = UIConfiguration.definitionCardBackground
+        button.addTarget(self, action: #selector(didTapFavoritesListButton), for: .touchUpInside)
+        return button
     }()
     
     lazy var definitionCard : UIView = {
@@ -114,6 +127,7 @@ class ViewController: UIViewController {
         stackView.addArrangedSubview(searchBar)
 
         view.addSubview(titleLabel)
+        view.addSubview(favoritesListButton)
         view.addSubview(definitionCard)
         view.addSubview(word)
         view.addSubview(wordType)
@@ -122,7 +136,9 @@ class ViewController: UIViewController {
         
         NSLayoutConstraint.activate([
             titleLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            titleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            titleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
+            favoritesListButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            favoritesListButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -25),
             definitionCard.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 10),
             definitionCard.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             definitionCard.heightAnchor.constraint(equalToConstant: 200),
@@ -162,6 +178,10 @@ class ViewController: UIViewController {
         }
     }
     
+    @objc private func didTapFavoritesListButton() {
+        navigationController?.pushViewController(FavoritesListViewController(), animated: true)
+    }
+    
     func presentSpinnerView() {
         addChild(spinnerView)
         view.addSubview(spinnerView.view)
@@ -176,7 +196,7 @@ class ViewController: UIViewController {
     }
 }
 
-extension ViewController: UITableViewDataSource, UITableViewDelegate {
+extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return wordDetails.first?.results?.count ?? 0
@@ -213,12 +233,13 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
         }
 
         navigationController?.pushViewController(DetailViewController(wordDetails: selectedDetails, selectedWord: selectedWord), animated: true)
+        navigationController?.navigationBar.tintColor = UIConfiguration.definitionCardBackground
 
         tableView.deselectRow(at: indexPath, animated: true)
     }
 }
 
-extension ViewController: UISearchBarDelegate {
+extension HomeViewController: UISearchBarDelegate {
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         
