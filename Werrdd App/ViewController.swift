@@ -12,21 +12,6 @@ class ViewController: UIViewController {
     //MARK: - Properties
     let spinnerView = SpinnerViewController()
     var wordDetails = [Word]()
-
-    let words = WordDataSource()
-//    let words: [WordDataSource] = [
-//        WordDataSource(word: "alleviate", definition: ": to make (something, such as pain or suffering) more bearable", partOfSpeech: "verb"),
-//        tempWordModel(word: "slosh", definition: ": to flounder or splash through water, mud, or slush", partOfSpeech: "noun"),
-//        tempWordModel(word: "oligarchy", definition: ": a government in which a small group exercises control especially for corrupt and selfish purposes", partOfSpeech: "noun"),
-//        tempWordModel(word: "stint", definition: ": a period of time spent at a particular activity", partOfSpeech: "noun"),
-//        tempWordModel(word: "ETA", definition: ": estimated time of arrival", partOfSpeech: "abbreviation"),
-//        tempWordModel(word: "culture", definition: ": the customary beliefs, social forms, and material traits of a racial, religious, or social group", partOfSpeech: "noun"),
-//        tempWordModel(word: "accountability", definition: ": the quality or state of being accountable", partOfSpeech: "noun"),
-//        tempWordModel(word: "waka", definition: ": a Japanese poem consisting of 31 syllables in 5 lines, with 5 syllables in the first and third lines and 7 in the others", partOfSpeech: "noun"),
-//        tempWordModel(word: "verdurous", definition: ": rich in verdure; freshly green; verdant", partOfSpeech: "adjective"),
-//        tempWordModel(word: "felicitous", definition: ": well-suited for the occasion, as an action, manner, or expression; apt; appropriate", partOfSpeech: "adjective"),
-//        tempWordModel(word: "transcendental", definition: ": abstract or metaphysical", partOfSpeech: "adjective")
-//    ]
     
     //MARK: - UI Properties
     let stackView: UIStackView = {
@@ -40,6 +25,7 @@ class ViewController: UIViewController {
     
     lazy var tableView: UITableView = {
         let tableView = UITableView()
+        tableView.backgroundColor = UIConfiguration.backgroundColor
         tableView.dataSource = self
         tableView.delegate = self
         tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -118,8 +104,6 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = UIConfiguration.backgroundColor
         addSubViews()
-//        tableView.delegate = self
-//        tableView.dataSource = self
     }
     
     //MARK: - UI Setup
@@ -135,10 +119,6 @@ class ViewController: UIViewController {
         view.addSubview(wordType)
         view.addSubview(definition)
         view.addSubview(refreshButton)
-        //view.addSubview(tableView)
-        //view.addSubview(spinner)
-        //view.addSubview(searchBar)
-
         
         NSLayoutConstraint.activate([
             titleLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
@@ -197,7 +177,6 @@ class ViewController: UIViewController {
     }
     
     func removeSpinnerView() {
-        //let child = SpinnerViewController()
         spinnerView.willMove(toParent: nil)
         spinnerView.view.removeFromSuperview()
         spinnerView.removeFromParent()
@@ -212,11 +191,10 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-//        let selectedWord = wordDetails.first?.results
-        let selectedWord = wordDetails[indexPath.row].results
+        let selectedWord = wordDetails.first?.word
         
-        print(selectedWord)
-
+        let selectedDetails = wordDetails.first?.results?[indexPath.row]
+                
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? HomeTableViewCell else {
             return UITableViewCell()
         }
@@ -224,27 +202,22 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
         cell.backgroundColor = UIConfiguration.definitionCardBackground
         
         //cell.configure(word: selectedWord)
+        cell.wordTitle.text = selectedWord
+        cell.partOfSpeech.text = selectedDetails?.partOfSpeech
+        cell.definition.text  = selectedDetails?.definition
         
-        cell.wordTitle.text = self.wordDetails.first?.word
-        cell.partOfSpeech.text = selectedWord?.first?.partOfSpeech
-        cell.definition.text = selectedWord?.first?.definition
-
-//        cell.wordTitle.text = words.words[indexPath.row].name
-//        cell.partOfSpeech.text = words.words[indexPath.row].partOfSpeech
-//        cell.definition.text = words.words[indexPath.row].definition
         return cell
     }
         
-//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//
-//        //If dosen't work, reference back to model to get correct path
-//        let selectedWord = wordDetails?.results?[indexPath.row].definition
-//
-//        //Have to figure out how to get this to conform to Word model
-////        navigationController?.pushViewController(DetailViewController(word: selectedWord, wordDetail: selectedWord, selectedWord: selectedWord.word), animated: true)
-//
-//        tableView.deselectRow(at: indexPath, animated: true)
-//    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+
+        let selectedWord = wordDetails.first?.word
+
+        //Have to figure out how to get this to conform to Word model
+//        navigationController?.pushViewController(DetailViewController(word: selectedWord, wordDetail: selectedWord, selectedWord: selectedWord.word), animated: true)
+
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
 }
 
 extension ViewController: UISearchBarDelegate {
@@ -255,19 +228,22 @@ extension ViewController: UISearchBarDelegate {
             return
         }
         
-        DispatchQueue.main.async {
-            self.tableView.reloadData()
-        }
-        
-        print(wordDetails)
+        presentSpinnerView()
         
         NetworkManager.shared.fetchWord(word: userInputedWord) { [weak self] result in
+            
             switch result {
             case .success(let output):
-                self?.wordDetails.append(output)
+                self?.wordDetails.insert(output, at: 0)
+                
+                DispatchQueue.main.async {
+                    self?.tableView.reloadData()
+                }
+                
             case .failure(let error):
                 print(error.localizedDescription)
             }
         }
+        removeSpinnerView()
     }
 }
