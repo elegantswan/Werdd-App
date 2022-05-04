@@ -16,6 +16,10 @@
 		D8304CBD2818F34B00FFE4DD /* SpinnerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8304CBC2818F34B00FFE4DD /* SpinnerViewController.swift */; };
 		D8304CC0281CAC9E00FFE4DD /* FavoritesListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8304CBF281CAC9E00FFE4DD /* FavoritesListViewController.swift */; };
 		D8351A0D27FBBD6900E3739E /* HomeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8351A0C27FBBD6900E3739E /* HomeTableViewCell.swift */; };
+		D854E73B2822232D008E49E9 /* WerrddApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D854E7392822232D008E49E9 /* WerrddApp.xcdatamodeld */; };
+		D854E741282229A6008E49E9 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D854E740282229A6008E49E9 /* DataManager.swift */; };
+		D854E74A282336BA008E49E9 /* FavoritedWord+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = D854E748282336BA008E49E9 /* FavoritedWord+CoreDataClass.swift */; };
+		D854E74B282336BA008E49E9 /* FavoritedWord+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = D854E749282336BA008E49E9 /* FavoritedWord+CoreDataProperties.swift */; };
 		D8695A8927DACC3F0024BC63 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8695A8827DACC3F0024BC63 /* AppDelegate.swift */; };
 		D8695A8B27DACC3F0024BC63 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8695A8A27DACC3F0024BC63 /* SceneDelegate.swift */; };
 		D8695A8D27DACC3F0024BC63 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8695A8C27DACC3F0024BC63 /* HomeViewController.swift */; };
@@ -35,6 +39,10 @@
 		D8304CBC2818F34B00FFE4DD /* SpinnerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpinnerViewController.swift; sourceTree = "<group>"; };
 		D8304CBF281CAC9E00FFE4DD /* FavoritesListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesListViewController.swift; sourceTree = "<group>"; };
 		D8351A0C27FBBD6900E3739E /* HomeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableViewCell.swift; sourceTree = "<group>"; };
+		D854E73A2822232D008E49E9 /* Werrdd App.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Werrdd App.xcdatamodel"; sourceTree = "<group>"; };
+		D854E740282229A6008E49E9 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
+		D854E748282336BA008E49E9 /* FavoritedWord+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FavoritedWord+CoreDataClass.swift"; sourceTree = "<group>"; };
+		D854E749282336BA008E49E9 /* FavoritedWord+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FavoritedWord+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		D8695A8527DACC3F0024BC63 /* Werrdd App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Werrdd App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8695A8827DACC3F0024BC63 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D8695A8A27DACC3F0024BC63 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -127,6 +135,24 @@
 			path = ViewControllers;
 			sourceTree = "<group>";
 		};
+		D854E742282229D3008E49E9 /* Persistence */ = {
+			isa = PBXGroup;
+			children = (
+				D854E74328233562008E49E9 /* Models */,
+				D854E740282229A6008E49E9 /* DataManager.swift */,
+			);
+			path = Persistence;
+			sourceTree = "<group>";
+		};
+		D854E74328233562008E49E9 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				D854E748282336BA008E49E9 /* FavoritedWord+CoreDataClass.swift */,
+				D854E749282336BA008E49E9 /* FavoritedWord+CoreDataProperties.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		D8695A7C27DACC3E0024BC63 = {
 			isa = PBXGroup;
 			children = (
@@ -148,6 +174,7 @@
 			children = (
 				D8695A8827DACC3F0024BC63 /* AppDelegate.swift */,
 				D8695A8A27DACC3F0024BC63 /* SceneDelegate.swift */,
+				D854E742282229D3008E49E9 /* Persistence */,
 				D8304CC1281CACC700FFE4DD /* ViewControllers */,
 				D8304CBE2818F36200FFE4DD /* Custom Cells */,
 				D8304CB2280F23CF00FFE4DD /* UI Elements */,
@@ -157,6 +184,7 @@
 				D8695A9127DACC420024BC63 /* Assets.xcassets */,
 				D8695A9327DACC420024BC63 /* LaunchScreen.storyboard */,
 				D8695A9627DACC420024BC63 /* Info.plist */,
+				D854E7392822232D008E49E9 /* WerrddApp.xcdatamodeld */,
 			);
 			path = "Werrdd App";
 			sourceTree = "<group>";
@@ -236,11 +264,15 @@
 				D8304CAC280E66C000FFE4DD /* WordModel.swift in Sources */,
 				D8304CBD2818F34B00FFE4DD /* SpinnerViewController.swift in Sources */,
 				D8304CAE280F235400FFE4DD /* NetworkManager.swift in Sources */,
+				D854E741282229A6008E49E9 /* DataManager.swift in Sources */,
 				D8695A9F27EE3E700024BC63 /* UIConfiguration.swift in Sources */,
 				D8695A8D27DACC3F0024BC63 /* HomeViewController.swift in Sources */,
+				D854E74B282336BA008E49E9 /* FavoritedWord+CoreDataProperties.swift in Sources */,
 				D8695A8927DACC3F0024BC63 /* AppDelegate.swift in Sources */,
 				D8695A9D27DAEDCB0024BC63 /* DefinitionCard.swift in Sources */,
 				D8695A8B27DACC3F0024BC63 /* SceneDelegate.swift in Sources */,
+				D854E73B2822232D008E49E9 /* WerrddApp.xcdatamodeld in Sources */,
+				D854E74A282336BA008E49E9 /* FavoritedWord+CoreDataClass.swift in Sources */,
 				D8304CAA2807E6B500FFE4DD /* DetailViewCustomCell.swift in Sources */,
 				D8304CA828067A7000FFE4DD /* DetailViewController.swift in Sources */,
 				D8304CC0281CAC9E00FFE4DD /* FavoritesListViewController.swift in Sources */,
@@ -454,6 +486,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		D854E7392822232D008E49E9 /* WerrddApp.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				D854E73A2822232D008E49E9 /* Werrdd App.xcdatamodel */,
+			);
+			currentVersion = D854E73A2822232D008E49E9 /* Werrdd App.xcdatamodel */;
+			path = WerrddApp.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = D8695A7D27DACC3E0024BC63 /* Project object */;
 }

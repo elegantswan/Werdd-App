@@ -11,7 +11,27 @@ class DetailViewController: UIViewController {
    
     //MARK: - Properties
     let wordDetails: WordDetail
-    let selectedWord: String
+//    let selectedWord: String
+    let selectedWord: Word
+
+    //Experiment
+    
+    var delegate: FavoritesDelegate?
+    
+    //MARK: - Action Functions
+    
+    @objc private func didTapFavoriteButton() {
+    
+        //delegate?.addToFavorites(favoritedWord: selectedWord)
+        
+        guard let definition = wordDetails.definition else {
+            return
+        }
+        
+        
+        DataManager.saveWord(word: selectedWord.word, definition: definition, partOfSpeech: wordDetails.partOfSpeech, synonyms: wordDetails.synonyms, antonyms: wordDetails.antonyms, examples: wordDetails.examples)
+    }
+    
     
     //MARK: - Lifecycle
     override func viewDidLoad() {
@@ -21,17 +41,18 @@ class DetailViewController: UIViewController {
     }
     
     //MARK: - Initializer
-    init(wordDetails: WordDetail ,selectedWord: String) {
+    init(wordDetails: WordDetail ,selectedWord: Word) {
         self.wordDetails = wordDetails
         self.selectedWord = selectedWord
         
         super.init(nibName: nil, bundle: nil)
+
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     //MARK: - UI Elements
     let stackView: UIStackView = {
         let stackView = UIStackView()
@@ -50,6 +71,7 @@ class DetailViewController: UIViewController {
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setImage(heartImage, for: .normal)
         button.tintColor = UIConfiguration.definitionCardBackground
+        button.addTarget(self, action: #selector(didTapFavoriteButton), for: .touchUpInside)
         return button
     }()
     
@@ -102,18 +124,18 @@ class DetailViewController: UIViewController {
     //MARK: - UI Setup
     private func setupUI() {
         
-        view.addSubview(favoriteButton)
         view.addSubview(stackView)
         stackView.addArrangedSubview(definitionCard)
         stackView.addArrangedSubview(synonymsCard)
         stackView.addArrangedSubview(antonymsCard)
         stackView.addArrangedSubview(exampleCard)
         
-        
         view.addSubview(definitionCard)
         view.addSubview(synonymsCard)
         view.addSubview(antonymsCard)
         view.addSubview(exampleCard)
+        view.addSubview(favoriteButton)
+
                 
         NSLayoutConstraint.activate([
             

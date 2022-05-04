@@ -90,13 +90,10 @@ class DetailViewCustomCell: UIView {
     }
     
     private func setupDefinitionStackView() {
-//        mainStackView.addArrangedSubview(partOfSpeechLabel)
-//        mainStackView.addArrangedSubview(titleLabel)
         titleStackView.addArrangedSubview(titleLabel)
         titleStackView.addArrangedSubview(partOfSpeechLabel)
         mainStackView.addArrangedSubview(titleStackView)
         mainStackView.addArrangedSubview(bodyLabel)
-       
     }
     
     private func addTitleLabel() {

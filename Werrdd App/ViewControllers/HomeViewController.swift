@@ -7,6 +7,11 @@
 
 import UIKit
 
+protocol FavoritesDelegate {
+    func addToFavorites(favoritedWord: Word)
+}
+
+
 class HomeViewController: UIViewController {
     
     //MARK: - Properties
@@ -112,7 +117,7 @@ class HomeViewController: UIViewController {
         return searchbar
     }()
         
-    //MARK: - Life Cycle Method
+    //MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIConfiguration.backgroundColor
@@ -148,7 +153,7 @@ class HomeViewController: UIViewController {
             wordType.leadingAnchor.constraint(equalTo: word.trailingAnchor, constant: 5),
             wordType.topAnchor.constraint(equalTo: definitionCard.topAnchor, constant: 15),
             definition.topAnchor.constraint(equalTo: word.bottomAnchor, constant: 10),
-            definition.leadingAnchor.constraint(equalTo: definitionCard.leadingAnchor, constant: 5),
+            definition.leadingAnchor.constraint(equalTo: definitionCard.leadingAnchor, constant: 10),
             definition.trailingAnchor.constraint(equalTo: definitionCard.trailingAnchor, constant: -5),
             refreshButton.bottomAnchor.constraint(equalTo: definitionCard.bottomAnchor, constant: -10),
             refreshButton.trailingAnchor.constraint(equalTo: definitionCard.trailingAnchor, constant: -10),
@@ -178,9 +183,23 @@ class HomeViewController: UIViewController {
         }
     }
     
+    
     @objc private func didTapFavoritesListButton() {
+        
+        //Pre persistence
+//        navigationController?.pushViewController(FavoritesListViewController(favorites: favoriteWordsList), animated: true)
+        
         navigationController?.pushViewController(FavoritesListViewController(), animated: true)
+
+
+        //Currently trying dependancy injection, will see about notidication center later
+        //NotificationCenter.default.addObserver(self, selector: #(didRecieveText()), name: Notification.Name("text"), object: nil)
     }
+    
+//    @objc private func didRecieveText(_ notification: Notification) {
+//        var text = notification.object as! String?
+//        
+//    }
     
     func presentSpinnerView() {
         addChild(spinnerView)
@@ -206,6 +225,8 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
         
         let selectedWord = wordDetails.first?.word
         
+//        let selectedWord = wordDetails[indexPath.row]
+        
         let selectedDetails = wordDetails.first?.results?[indexPath.row]
                 
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? HomeTableViewCell else {
@@ -228,11 +249,22 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
             return
         }
         
+//        guard let selectedWord = wordDetails[indexPath.row] else {
+//            return
+//        }
+//
+        
+        let selectedWordd = wordDetails[indexPath.row]
+        
+        
+        
         guard let selectedDetails = wordDetails.first?.results?[indexPath.row] else {
             return
         }
 
-        navigationController?.pushViewController(DetailViewController(wordDetails: selectedDetails, selectedWord: selectedWord), animated: true)
+        
+        //*************Review this later*********************
+        navigationController?.pushViewController(DetailViewController(wordDetails: selectedDetails, selectedWord: selectedWordd), animated: true)
         navigationController?.navigationBar.tintColor = UIConfiguration.definitionCardBackground
 
         tableView.deselectRow(at: indexPath, animated: true)
@@ -246,7 +278,7 @@ extension HomeViewController: UISearchBarDelegate {
         guard let userInputedWord = searchBar.text else {
             return
         }
-        
+                
         presentSpinnerView()
         
         NetworkManager.shared.fetchWord(word: userInputedWord) { [weak self] result in
@@ -264,5 +296,13 @@ extension HomeViewController: UISearchBarDelegate {
             }
         }
         removeSpinnerView()
+    }
+}
+
+extension HomeViewController: FavoritesDelegate {
+    
+    func addToFavorites(favoritedWord: Word) {
+        favoriteWordsList.append(favoritedWord)
+        print(favoritedWord)
     }
 }
