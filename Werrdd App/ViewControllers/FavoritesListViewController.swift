@@ -91,6 +91,19 @@ extension FavoritesListViewController: UITableViewDelegate, UITableViewDataSourc
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
+//        guard let selectedWord = favoritesList[indexPath.row].word else {
+//            return
+//        }
+//
+//        guard let selectedDetails = favoritesList[indexPath.row] else {
+//            return
+//        }
+
+        
+        let word = favoritesList[indexPath.row]
+        
+        navigationController?.pushViewController(FavoritedDetailViewController(selectedWord: word), animated: true)
+
         tableView.deselectRow(at: indexPath, animated: true)
     }
 }

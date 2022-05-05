@@ -20,6 +20,7 @@
 		D854E741282229A6008E49E9 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D854E740282229A6008E49E9 /* DataManager.swift */; };
 		D854E74A282336BA008E49E9 /* FavoritedWord+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = D854E748282336BA008E49E9 /* FavoritedWord+CoreDataClass.swift */; };
 		D854E74B282336BA008E49E9 /* FavoritedWord+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = D854E749282336BA008E49E9 /* FavoritedWord+CoreDataProperties.swift */; };
+		D854E74D2823A03F008E49E9 /* FavoritedDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D854E74C2823A03F008E49E9 /* FavoritedDetailViewController.swift */; };
 		D8695A8927DACC3F0024BC63 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8695A8827DACC3F0024BC63 /* AppDelegate.swift */; };
 		D8695A8B27DACC3F0024BC63 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8695A8A27DACC3F0024BC63 /* SceneDelegate.swift */; };
 		D8695A8D27DACC3F0024BC63 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8695A8C27DACC3F0024BC63 /* HomeViewController.swift */; };
@@ -43,6 +44,7 @@
 		D854E740282229A6008E49E9 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		D854E748282336BA008E49E9 /* FavoritedWord+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FavoritedWord+CoreDataClass.swift"; sourceTree = "<group>"; };
 		D854E749282336BA008E49E9 /* FavoritedWord+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FavoritedWord+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		D854E74C2823A03F008E49E9 /* FavoritedDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritedDetailViewController.swift; sourceTree = "<group>"; };
 		D8695A8527DACC3F0024BC63 /* Werrdd App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Werrdd App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8695A8827DACC3F0024BC63 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D8695A8A27DACC3F0024BC63 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -131,6 +133,7 @@
 				D8695A8C27DACC3F0024BC63 /* HomeViewController.swift */,
 				D8304CA728067A7000FFE4DD /* DetailViewController.swift */,
 				D8304CBF281CAC9E00FFE4DD /* FavoritesListViewController.swift */,
+				D854E74C2823A03F008E49E9 /* FavoritedDetailViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -263,6 +266,7 @@
 				D8351A0D27FBBD6900E3739E /* HomeTableViewCell.swift in Sources */,
 				D8304CAC280E66C000FFE4DD /* WordModel.swift in Sources */,
 				D8304CBD2818F34B00FFE4DD /* SpinnerViewController.swift in Sources */,
+				D854E74D2823A03F008E49E9 /* FavoritedDetailViewController.swift in Sources */,
 				D8304CAE280F235400FFE4DD /* NetworkManager.swift in Sources */,
 				D854E741282229A6008E49E9 /* DataManager.swift in Sources */,
 				D8695A9F27EE3E700024BC63 /* UIConfiguration.swift in Sources */,
