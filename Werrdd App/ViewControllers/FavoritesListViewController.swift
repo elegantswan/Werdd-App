@@ -55,6 +55,8 @@ class FavoritesListViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = UIConfiguration.backgroundColor
         addSubviews()
+        navigationController?.navigationBar.tintColor = UIConfiguration.definitionCardBackground
+
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -94,17 +96,23 @@ extension FavoritesListViewController: UITableViewDelegate, UITableViewDataSourc
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return 10
+        return favoritesList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        //Need to access element based on their indexPath
+        let wordDetails = favoritesList[indexPath.row]
+        
         
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? HomeTableViewCell else {
             return UITableViewCell()
         }
         cell.backgroundColor = UIConfiguration.definitionCardBackground
         
-        cell.wordTitle.text = favoritesList.first?.word
+        cell.wordTitle.text = wordDetails.word
+        cell.partOfSpeech.text = wordDetails.partOfSpeech
+        cell.definition.text = wordDetails.definition
         
         return cell
     }
