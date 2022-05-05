@@ -16,9 +16,12 @@ class DataManager {
         return appDelegate.persistentContainer.viewContext
     }()
 
+
     //MARK: - Create
     static func saveWord(word: String, definition: String, partOfSpeech: String?, synonyms: [String]?, antonyms: [String]?, examples: [String]?) {
         
+        managedObjectContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
+
         let favoritedWord = FavoritedWord(context: managedObjectContext)
         favoritedWord.word = word
         favoritedWord.definition = definition
@@ -30,7 +33,7 @@ class DataManager {
         do {
             try managedObjectContext.save()
         } catch {
-            print("Error occured while saving word.")
+            print("DUPLICATE!!")
         }
     }
     

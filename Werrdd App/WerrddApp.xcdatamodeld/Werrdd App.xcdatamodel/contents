@@ -7,6 +7,20 @@
         <attribute name="partOfSpeech" optional="YES" attributeType="String"/>
         <attribute name="synonyms" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromDataTransformer" customClassName="[String]"/>
         <attribute name="word" optional="YES" attributeType="String"/>
+        <uniquenessConstraints>
+            <uniquenessConstraint>
+                <constraint value="antonyms"/>
+            </uniquenessConstraint>
+            <uniquenessConstraint>
+                <constraint value="definition"/>
+            </uniquenessConstraint>
+            <uniquenessConstraint>
+                <constraint value="examples"/>
+            </uniquenessConstraint>
+            <uniquenessConstraint>
+                <constraint value="synonyms"/>
+            </uniquenessConstraint>
+        </uniquenessConstraints>
     </entity>
     <elements>
         <element name="FavoritedWord" positionX="-63" positionY="-18" width="128" height="119"/>
