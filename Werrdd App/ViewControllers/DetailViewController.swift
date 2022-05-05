@@ -11,33 +11,25 @@ class DetailViewController: UIViewController {
    
     //MARK: - Properties
     let wordDetails: WordDetail
-//    let selectedWord: String
     let selectedWord: Word
 
-    //Experiment
-    
-    var delegate: FavoritesDelegate?
-    
     //MARK: - Action Functions
     
     @objc private func didTapFavoriteButton() {
-    
-        //delegate?.addToFavorites(favoritedWord: selectedWord)
-        
+            
         guard let definition = wordDetails.definition else {
             return
         }
         
-        
         DataManager.saveWord(word: selectedWord.word, definition: definition, partOfSpeech: wordDetails.partOfSpeech, synonyms: wordDetails.synonyms, antonyms: wordDetails.antonyms, examples: wordDetails.examples)
     }
-    
     
     //MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIConfiguration.backgroundColor
         setupUI()
+        setupNavigationItems()
     }
     
     //MARK: - Initializer
@@ -46,7 +38,6 @@ class DetailViewController: UIViewController {
         self.selectedWord = selectedWord
         
         super.init(nibName: nil, bundle: nil)
-
     }
     
     required init?(coder: NSCoder) {
@@ -123,7 +114,6 @@ class DetailViewController: UIViewController {
     
     //MARK: - UI Setup
     private func setupUI() {
-        
         view.addSubview(stackView)
         stackView.addArrangedSubview(definitionCard)
         stackView.addArrangedSubview(synonymsCard)
@@ -134,15 +124,10 @@ class DetailViewController: UIViewController {
         view.addSubview(synonymsCard)
         view.addSubview(antonymsCard)
         view.addSubview(exampleCard)
-        view.addSubview(favoriteButton)
-
-                
+                        
         NSLayoutConstraint.activate([
             
-            favoriteButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            favoriteButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-            
-            definitionCard.topAnchor.constraint(equalTo: favoriteButton.bottomAnchor, constant: 30),
+            definitionCard.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 30),
             definitionCard.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             definitionCard.heightAnchor.constraint(equalToConstant: 150),
             definitionCard.widthAnchor.constraint(equalToConstant: 350),
@@ -167,5 +152,10 @@ class DetailViewController: UIViewController {
             stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
             stackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
+    }
+    
+    private func setupNavigationItems() {
+        navigationItem.title = selectedWord.word
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "heart"), style: .plain, target: self, action: #selector(didTapFavoriteButton))
     }
 }

@@ -7,11 +7,6 @@
 
 import UIKit
 
-protocol FavoritesDelegate {
-    func addToFavorites(favoritedWord: Word)
-}
-
-
 class HomeViewController: UIViewController {
     
     //MARK: - Properties
@@ -39,26 +34,6 @@ class HomeViewController: UIViewController {
         tableView.allowsSelection = true
         tableView.register(HomeTableViewCell.self, forCellReuseIdentifier: "cell")
         return tableView
-    }()
-    
-    lazy var titleLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.preferredFont(forTextStyle: .largeTitle)
-        label.text = "Werrdd"
-        return label
-    }()
-    
-    lazy var favoritesListButton: UIButton = {
-        let buttonConfig = UIImage.SymbolConfiguration(pointSize: 30, weight: .bold)
-        let listImage = UIImage(systemName: "list.star", withConfiguration: buttonConfig)
-        
-        let button = UIButton()
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.setImage(listImage, for: .normal)
-        button.tintColor = UIConfiguration.definitionCardBackground
-        button.addTarget(self, action: #selector(didTapFavoritesListButton), for: .touchUpInside)
-        return button
     }()
     
     lazy var definitionCard : UIView = {
@@ -111,7 +86,7 @@ class HomeViewController: UIViewController {
         let searchbar = UISearchBar()
         searchbar.translatesAutoresizingMaskIntoConstraints = false
         searchbar.barTintColor = UIConfiguration.backgroundColor
-        searchbar.placeholder = "Search for word"
+        searchbar.placeholder = "Search for a word"
         searchbar.layer.cornerRadius = 25
         searchbar.delegate = self
         return searchbar
@@ -120,19 +95,19 @@ class HomeViewController: UIViewController {
     //MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        configureNaviationItems()
         view.backgroundColor = UIConfiguration.backgroundColor
-        addSubViews()
+        configureUI()
     }
     
     //MARK: - UI Setup
-    private func addSubViews() {
+    
+    private func configureUI() {
 
         view.addSubview(stackView)
         stackView.addArrangedSubview(tableView)
         stackView.addArrangedSubview(searchBar)
 
-        view.addSubview(titleLabel)
-        view.addSubview(favoritesListButton)
         view.addSubview(definitionCard)
         view.addSubview(word)
         view.addSubview(wordType)
@@ -140,11 +115,7 @@ class HomeViewController: UIViewController {
         view.addSubview(refreshButton)
         
         NSLayoutConstraint.activate([
-            titleLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            titleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
-            favoritesListButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            favoritesListButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -25),
-            definitionCard.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 10),
+            definitionCard.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
             definitionCard.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             definitionCard.heightAnchor.constraint(equalToConstant: 200),
             definitionCard.widthAnchor.constraint(equalToConstant: 350),
@@ -162,7 +133,40 @@ class HomeViewController: UIViewController {
             stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             stackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
         ])
+        
+        if #available(iOS 15, *) {
+            let appearance = UINavigationBarAppearance()
+            appearance.configureWithOpaqueBackground()
+            appearance.backgroundColor = UIConfiguration.backgroundColor
+            UINavigationBar.appearance().scrollEdgeAppearance = appearance
+            UINavigationBar.appearance().standardAppearance = appearance
+        }
     }
+    
+    private func configureNaviationItems() {
+        navigationController?.navigationBar.tintColor = UIConfiguration.definitionCardBackground
+
+        navigationItem.title = "Werdd"
+        
+        
+        let tabBarImage = UIImage(systemName: "list.star")?.withTintColor(UIConfiguration.definitionCardBackground, renderingMode: .alwaysOriginal)
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: tabBarImage, style: .plain, target: self, action: #selector(didTapFavoritesListButton))
+    }
+    
+    private func presentSpinnerView() {
+        addChild(spinnerView)
+        view.addSubview(spinnerView.view)
+        spinnerView.view.frame = view.frame
+        spinnerView.didMove(toParent: self)
+    }
+    
+    private func removeSpinnerView() {
+        spinnerView.willMove(toParent: nil)
+        spinnerView.view.removeFromSuperview()
+        spinnerView.removeFromParent()
+    }
+    
+    //MARK: - Action Functions
     
     @objc private func didTapRefresh() {
         
@@ -183,35 +187,8 @@ class HomeViewController: UIViewController {
         }
     }
     
-    
     @objc private func didTapFavoritesListButton() {
-        
-        //Pre persistence
-//        navigationController?.pushViewController(FavoritesListViewController(favorites: favoriteWordsList), animated: true)
-        
         navigationController?.pushViewController(FavoritesListViewController(), animated: true)
-
-
-        //Currently trying dependancy injection, will see about notidication center later
-        //NotificationCenter.default.addObserver(self, selector: #(didRecieveText()), name: Notification.Name("text"), object: nil)
-    }
-    
-//    @objc private func didRecieveText(_ notification: Notification) {
-//        var text = notification.object as! String?
-//        
-//    }
-    
-    func presentSpinnerView() {
-        addChild(spinnerView)
-        view.addSubview(spinnerView.view)
-        spinnerView.view.frame = view.frame
-        spinnerView.didMove(toParent: self)
-    }
-    
-    func removeSpinnerView() {
-        spinnerView.willMove(toParent: nil)
-        spinnerView.view.removeFromSuperview()
-        spinnerView.removeFromParent()
     }
 }
 
@@ -224,9 +201,7 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let selectedWord = wordDetails.first?.word
-        
-//        let selectedWord = wordDetails[indexPath.row]
-        
+                
         let selectedDetails = wordDetails.first?.results?[indexPath.row]
                 
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? HomeTableViewCell else {
@@ -235,7 +210,6 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
         
         cell.backgroundColor = UIConfiguration.definitionCardBackground
         
-        //cell.configure(word: selectedWord)
         cell.wordTitle.text = selectedWord
         cell.partOfSpeech.text = selectedDetails?.partOfSpeech
         cell.definition.text  = selectedDetails?.definition
@@ -244,28 +218,17 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
     }
         
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-
-        guard let selectedWord = wordDetails.first?.word else {
+        
+        
+        guard let selectedWord = wordDetails.first else {
             return
         }
-        
-//        guard let selectedWord = wordDetails[indexPath.row] else {
-//            return
-//        }
-//
-        
-        let selectedWordd = wordDetails[indexPath.row]
-        
-        
         
         guard let selectedDetails = wordDetails.first?.results?[indexPath.row] else {
             return
         }
 
-        
-        //*************Review this later*********************
-        navigationController?.pushViewController(DetailViewController(wordDetails: selectedDetails, selectedWord: selectedWordd), animated: true)
-        navigationController?.navigationBar.tintColor = UIConfiguration.definitionCardBackground
+        navigationController?.pushViewController(DetailViewController(wordDetails: selectedDetails, selectedWord: selectedWord), animated: true)
 
         tableView.deselectRow(at: indexPath, animated: true)
     }
@@ -296,13 +259,5 @@ extension HomeViewController: UISearchBarDelegate {
             }
         }
         removeSpinnerView()
-    }
-}
-
-extension HomeViewController: FavoritesDelegate {
-    
-    func addToFavorites(favoritedWord: Word) {
-        favoriteWordsList.append(favoritedWord)
-        print(favoritedWord)
     }
 }
