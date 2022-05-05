@@ -12,17 +12,6 @@ class DetailViewController: UIViewController {
     //MARK: - Properties
     let wordDetails: WordDetail
     let selectedWord: Word
-
-    //MARK: - Action Functions
-    
-    @objc private func didTapFavoriteButton() {
-            
-        guard let definition = wordDetails.definition else {
-            return
-        }
-        
-        DataManager.saveWord(word: selectedWord.word, definition: definition, partOfSpeech: wordDetails.partOfSpeech, synonyms: wordDetails.synonyms, antonyms: wordDetails.antonyms, examples: wordDetails.examples)
-    }
     
     //MARK: - Lifecycle
     override func viewDidLoad() {
@@ -157,5 +146,15 @@ class DetailViewController: UIViewController {
     private func setupNavigationItems() {
         navigationItem.title = selectedWord.word
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "heart"), style: .plain, target: self, action: #selector(didTapFavoriteButton))
+    }
+    
+    //MARK: - Action Functions
+    @objc private func didTapFavoriteButton() {
+            
+        guard let definition = wordDetails.definition else {
+            return
+        }
+        
+        DataManager.saveWord(word: selectedWord.word, definition: definition, partOfSpeech: wordDetails.partOfSpeech, synonyms: wordDetails.synonyms, antonyms: wordDetails.antonyms, examples: wordDetails.examples)
     }
 }

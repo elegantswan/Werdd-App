@@ -9,24 +9,8 @@ import UIKit
 
 class FavoritedDetailViewController: UIViewController {
    
-    //MARK: - Properties
-//    let wordDetails: WordDetail
-//    let selectedWord: Word
-    
-    let wordDetails: FavoritedWord
+    let favoritedWord: FavoritedWord
 
-    //MARK: - Action Functions
-    
-    @objc private func didTapDeleteButton() {
-            
-        guard let selectedWord = wordDetails else {
-            return
-        }
-        
-        //Need to implement delete CRUD operation instead of saving
-        DataManager.saveWord(word: selectedWord.word, definition: selectedWord.definition, partOfSpeech: selectedWord.partOfSpeech, synonyms: selectedWord.synonyms, antonyms: selectedWord.antonyms, examples: selectedWord.examples)
-    }
-    
     //MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,19 +20,8 @@ class FavoritedDetailViewController: UIViewController {
     }
     
     //MARK: - Initializer
-    
-    //Original
-//    init(wordDetails: WordDetail ,selectedWord: Word, selectedWordd: FavoritedWord) {
-//        self.wordDetails = wordDetails
-//        self.selectedWord = selectedWord
-//        self.selectedWordd = selectedWordd
-//
-//        super.init(nibName: nil, bundle: nil)
-//    }
-    
-    //Testing with new word type
     init(selectedWord: FavoritedWord) {
-        self.wordDetails = selectedWord
+        self.favoritedWord = selectedWord
         
         super.init(nibName: nil, bundle: nil)
     }
@@ -56,7 +29,7 @@ class FavoritedDetailViewController: UIViewController {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
+    
     //MARK: - UI Elements
     let stackView: UIStackView = {
         let stackView = UIStackView()
@@ -84,8 +57,8 @@ class FavoritedDetailViewController: UIViewController {
         card.translatesAutoresizingMaskIntoConstraints = false
         card.title = "Definition"
         card.showPartOfSpeech()
-        card.partOfSpeech = wordDetails.partOfSpeech
-        card.bodyLabel.text = wordDetails.definition
+        card.partOfSpeech = favoritedWord.partOfSpeech
+        card.bodyLabel.text = favoritedWord.definition
         return card
     }()
 
@@ -93,10 +66,10 @@ class FavoritedDetailViewController: UIViewController {
         let card = DetailViewCustomCell(backgroundColor: UIConfiguration.definitionCardBackground)
         card.translatesAutoresizingMaskIntoConstraints = false
         card.title = "Synonyms"
-        if wordDetails.synonyms == nil {
+        if favoritedWord.synonyms == nil {
             card.body = "Can't seem to find any synonyms😔"
         } else {
-            card.body = wordDetails.synonyms?.joined(separator: ", ")
+            card.body = favoritedWord.synonyms?.joined(separator: ", ")
         }
         return card
     }()
@@ -105,10 +78,10 @@ class FavoritedDetailViewController: UIViewController {
         let card = DetailViewCustomCell(backgroundColor: UIConfiguration.definitionCardBackground)
         card.translatesAutoresizingMaskIntoConstraints = false
         card.title = "Antonyms"
-        if wordDetails.antonyms == nil {
+        if favoritedWord.antonyms == nil {
             card.body = "Can't seem to find any antonyms😔"
         } else {
-            card.body = wordDetails.antonyms?.joined(separator: ", ")
+            card.body = favoritedWord.antonyms?.joined(separator: ", ")
         }
         return card
     }()
@@ -117,10 +90,10 @@ class FavoritedDetailViewController: UIViewController {
         let card = DetailViewCustomCell(backgroundColor: UIConfiguration.definitionCardBackground)
         card.translatesAutoresizingMaskIntoConstraints = false
         card.title = "Examples"
-        if wordDetails.examples == nil {
+        if favoritedWord.examples == nil {
             card.body = "Can't seem to find any examples😔"
         } else {
-            card.body = wordDetails.examples?.joined(separator: ", ")
+            card.body = favoritedWord.examples?.joined(separator: ", ")
         }
         return card
     }()
@@ -168,7 +141,13 @@ class FavoritedDetailViewController: UIViewController {
     }
     
     private func setupNavigationItems() {
-        navigationItem.title = wordDetails.word
+        navigationItem.title = favoritedWord.word
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "trash"), style: .plain, target: self, action: #selector(didTapDeleteButton))
+    }
+    
+    //MARK: - Action Functions
+    @objc private func didTapDeleteButton() {
+        DataManager.deleteWord(word: favoritedWord)
+        navigationController?.popViewController(animated: true)
     }
 }

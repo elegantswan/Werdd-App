@@ -9,7 +9,15 @@ import UIKit
 
 class HomeViewController: UIViewController {
     
-    //MARK: - Properties
+    //MARK: - Life Cycle
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        configureNaviationItems()
+        view.backgroundColor = UIConfiguration.backgroundColor
+        configureUI()
+    }
+    
+    //MARK: - UI Properties
     let spinnerView = SpinnerViewController()
     var wordDetails = [Word]()
     var favoriteWordsList = [Word]()
@@ -91,19 +99,9 @@ class HomeViewController: UIViewController {
         searchbar.delegate = self
         return searchbar
     }()
-        
-    //MARK: - Life Cycle
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        configureNaviationItems()
-        view.backgroundColor = UIConfiguration.backgroundColor
-        configureUI()
-    }
     
     //MARK: - UI Setup
-    
     private func configureUI() {
-
         view.addSubview(stackView)
         stackView.addArrangedSubview(tableView)
         stackView.addArrangedSubview(searchBar)
@@ -167,7 +165,6 @@ class HomeViewController: UIViewController {
     }
     
     //MARK: - Action Functions
-    
     @objc private func didTapRefresh() {
         
         presentSpinnerView()
@@ -191,6 +188,7 @@ class HomeViewController: UIViewController {
         navigationController?.pushViewController(FavoritesListViewController(), animated: true)
     }
 }
+
 
 extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
     

@@ -11,21 +11,7 @@ class FavoritesListViewController: UIViewController {
         
     private var favoritesList = [FavoritedWord]()
     
-    //MARK: - UI Properties
-    
-    lazy var tableView: UITableView = {
-        let tableView = UITableView()
-        tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.dataSource = self
-        tableView.delegate  = self
-        tableView.register(HomeTableViewCell.self, forCellReuseIdentifier: "cell")
-        tableView.backgroundColor = UIConfiguration.definitionCardBackground
-        tableView.layer.cornerRadius = 10
-        return tableView
-    }()
-    
     //MARK: - Lifecycle Methods
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIConfiguration.backgroundColor
@@ -47,8 +33,19 @@ class FavoritesListViewController: UIViewController {
         }
     }
     
-    //MARK: - UI Setup
+    //MARK: - UI Properties
+    lazy var tableView: UITableView = {
+        let tableView = UITableView()
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.dataSource = self
+        tableView.delegate  = self
+        tableView.register(HomeTableViewCell.self, forCellReuseIdentifier: "cell")
+        tableView.backgroundColor = UIConfiguration.definitionCardBackground
+        tableView.layer.cornerRadius = 10
+        return tableView
+    }()
     
+    //MARK: - UI Setup
     private func addSubviews() {
         view.addSubview(tableView)
         
@@ -65,6 +62,7 @@ class FavoritesListViewController: UIViewController {
         navigationItem.title = "❤️Favorite Words❤️"
     }
 }
+
 
 extension FavoritesListViewController: UITableViewDelegate, UITableViewDataSource {
     
@@ -90,15 +88,6 @@ extension FavoritesListViewController: UITableViewDelegate, UITableViewDataSourc
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-//        guard let selectedWord = favoritesList[indexPath.row].word else {
-//            return
-//        }
-//
-//        guard let selectedDetails = favoritesList[indexPath.row] else {
-//            return
-//        }
-
         
         let word = favoritesList[indexPath.row]
         

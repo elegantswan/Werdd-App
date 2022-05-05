@@ -17,7 +17,6 @@ class DataManager {
     }()
 
     //MARK: - Create
-    
     static func saveWord(word: String, definition: String, partOfSpeech: String?, synonyms: [String]?, antonyms: [String]?, examples: [String]?) {
         
         let favoritedWord = FavoritedWord(context: managedObjectContext)
@@ -36,7 +35,6 @@ class DataManager {
     }
     
     //MARK: - Read
-    
     static func fetchFavoritedWords(completion: ([FavoritedWord]?) -> Void) {
         
         do {
@@ -49,7 +47,6 @@ class DataManager {
     }
         
     //MARK: - Delete
-    
     static func deleteWord(word: FavoritedWord) {
         
         managedObjectContext.delete(word)
