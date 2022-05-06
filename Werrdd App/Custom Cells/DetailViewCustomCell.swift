@@ -39,15 +39,14 @@ class DetailViewCustomCell: UIView {
     
     let titleLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont(name: "GillSans-Bold", size: 24)
+        label.font = UIFont(name: "Menlo-Bold", size: 24)
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "Yeeeet"
         return label
     }()
     
     let bodyLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont(name: "GillSans", size: 14)
+        label.font = UIFont(name: "Menlo", size: 14)
         label.text = "Property not avaialble"
         label.translatesAutoresizingMaskIntoConstraints = false
         label.lineBreakMode = .byWordWrapping
@@ -58,7 +57,7 @@ class DetailViewCustomCell: UIView {
     let partOfSpeechLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont(name: "GillSans", size: 10)
+        label.font = UIFont(name: "Menlo", size: 10)
         return label
     }()
     

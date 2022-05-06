@@ -54,7 +54,7 @@ class HomeViewController: UIViewController {
     
     lazy var word: UILabel = {
         let label = UILabel()
-        label.font = UIFont(name: "GillSans-Bold", size: 20)
+        label.font = UIFont(name: "Menlo-Bold", size: 20)
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Random Word"
         return label
@@ -69,14 +69,15 @@ class HomeViewController: UIViewController {
     }()
     
     lazy var definition: UILabel = {
-        let definition = UILabel()
-        definition.translatesAutoresizingMaskIntoConstraints = false
-        definition.lineBreakMode = .byWordWrapping
-        definition.numberOfLines = 5
-        definition.text = "Press refresh button to generate a new word!"
-        definition.numberOfLines = 0
-        definition.lineBreakMode = .byTruncatingTail
-        return definition
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = UIFont(name: "Menlo", size: 14)
+        label.lineBreakMode = .byWordWrapping
+        label.numberOfLines = 5
+        label.text = "Press refresh button to generate a new word!"
+        label.numberOfLines = 0
+        label.lineBreakMode = .byTruncatingTail
+        return label
     }()
     
     lazy var refreshButton: UIButton = {
@@ -148,17 +149,19 @@ class HomeViewController: UIViewController {
     
     private func configureNaviationItems() {
         navigationController?.navigationBar.tintColor = UIConfiguration.definitionCardBackground
-                
-//        navigationItem.title = "Werrdd"
-        
-        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 130, height: 40))
+
+        //Main icon on navigation bar
+        let imageView = UIImageView(image: #imageLiteral(resourceName: "book-icon"))
+        imageView.frame = CGRect(x: 0, y: 0, width: 200, height: 50)
         imageView.contentMode = .scaleAspectFit
 
-        let image = UIImage(named: "book-icon")
-        imageView.image = image
+        let titleView = UIView(frame: CGRect(x: 0, y: 0, width: 200, height: 50))
 
-        navigationItem.titleView = imageView
-        
+        titleView.addSubview(imageView)
+        titleView.backgroundColor = .clear
+        self.navigationItem.titleView = titleView
+                
+        //Favorites icon on right side of navigation bar
         let tabBarImage = UIImage(systemName: "list.star")?.withTintColor(UIConfiguration.definitionCardBackground, renderingMode: .alwaysOriginal)
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: tabBarImage, style: .plain, target: self, action: #selector(didTapFavoritesListButton))
     }

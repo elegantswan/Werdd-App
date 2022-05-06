@@ -17,25 +17,26 @@ class HomeTableViewCell: UITableViewCell {
 
     // MARK: - UI Properties
     lazy var wordTitle: UILabel = {
-        let word = UILabel()
-        word.translatesAutoresizingMaskIntoConstraints = false
-        word.font = .boldSystemFont(ofSize: 20)
-        return word
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = UIFont(name: "Menlo-Bold", size: 20)
+        return label
     }()
     
     lazy var partOfSpeech: UILabel = {
-        let partOfSpeech = UILabel()
-        partOfSpeech.translatesAutoresizingMaskIntoConstraints = false
-        partOfSpeech.font = .italicSystemFont(ofSize: 14)
-        return partOfSpeech
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = .italicSystemFont(ofSize: 14)
+        return label
     }()
     
     lazy var definition: UILabel = {
-        let definition = UILabel()
-        definition.translatesAutoresizingMaskIntoConstraints = false
-        definition.numberOfLines = 0
-        definition.lineBreakMode = .byWordWrapping
-        return definition
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = UIFont(name: "Menlo", size: 12)
+        label.numberOfLines = 0
+        label.lineBreakMode = .byWordWrapping
+        return label
     }()
     
     private func setupUI() {
