@@ -10,14 +10,12 @@ import UIKit
 class HomeTableViewCell: UITableViewCell {
         
     // MARK: - Initializers
-     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupUI()
     }
 
     // MARK: - UI Properties
-    
     lazy var wordTitle: UILabel = {
         let word = UILabel()
         word.translatesAutoresizingMaskIntoConstraints = false
@@ -64,10 +62,4 @@ class HomeTableViewCell: UITableViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-//    func configure(word: WordDetail) {
-//        wordTitle.text = word.word
-//        partOfSpeech.text = word.results?.first?.partOfSpeech
-//        definition.text = word.results?.first?.definition
-//    }
 }

@@ -117,15 +117,20 @@ class HomeViewController: UIViewController {
             definitionCard.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             definitionCard.heightAnchor.constraint(equalToConstant: 200),
             definitionCard.widthAnchor.constraint(equalToConstant: 350),
+            
             word.topAnchor.constraint(equalTo: definitionCard.topAnchor, constant: 10),
             word.leadingAnchor.constraint(equalTo: definitionCard.leadingAnchor, constant: 10),
+            
             wordType.leadingAnchor.constraint(equalTo: word.trailingAnchor, constant: 5),
             wordType.topAnchor.constraint(equalTo: definitionCard.topAnchor, constant: 15),
+            
             definition.topAnchor.constraint(equalTo: word.bottomAnchor, constant: 10),
             definition.leadingAnchor.constraint(equalTo: definitionCard.leadingAnchor, constant: 10),
             definition.trailingAnchor.constraint(equalTo: definitionCard.trailingAnchor, constant: -5),
+            
             refreshButton.bottomAnchor.constraint(equalTo: definitionCard.bottomAnchor, constant: -10),
             refreshButton.trailingAnchor.constraint(equalTo: definitionCard.trailingAnchor, constant: -10),
+            
             stackView.topAnchor.constraint(equalTo: definitionCard.bottomAnchor, constant: 15),
             stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
@@ -143,9 +148,16 @@ class HomeViewController: UIViewController {
     
     private func configureNaviationItems() {
         navigationController?.navigationBar.tintColor = UIConfiguration.definitionCardBackground
-
-        navigationItem.title = "Werdd"
+                
+//        navigationItem.title = "Werrdd"
         
+        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 130, height: 40))
+        imageView.contentMode = .scaleAspectFit
+
+        let image = UIImage(named: "book-icon")
+        imageView.image = image
+
+        navigationItem.titleView = imageView
         
         let tabBarImage = UIImage(systemName: "list.star")?.withTintColor(UIConfiguration.definitionCardBackground, renderingMode: .alwaysOriginal)
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: tabBarImage, style: .plain, target: self, action: #selector(didTapFavoritesListButton))

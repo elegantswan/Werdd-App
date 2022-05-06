@@ -59,7 +59,7 @@ class FavoritesListViewController: UIViewController {
     
     private func setupNavigationItems() {
         navigationController?.navigationBar.tintColor = UIConfiguration.definitionCardBackground
-        navigationItem.title = "❤️Favorite Words❤️"
+        navigationItem.title = "💛Favorite Words💛"
     }
 }
 

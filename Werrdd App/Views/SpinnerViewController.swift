@@ -9,12 +9,6 @@ import UIKit
 
 class SpinnerViewController: UIViewController {
     
-    lazy var spinner: UIActivityIndicatorView = {
-        let spinner = UIActivityIndicatorView(style: .large)
-        spinner.translatesAutoresizingMaskIntoConstraints = false
-        return spinner
-    }()
-
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(spinner)
@@ -26,4 +20,10 @@ class SpinnerViewController: UIViewController {
         
         spinner.startAnimating()
     }
+    
+    lazy var spinner: UIActivityIndicatorView = {
+        let spinner = UIActivityIndicatorView(style: .large)
+        spinner.translatesAutoresizingMaskIntoConstraints = false
+        return spinner
+    }()
 }

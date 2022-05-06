@@ -9,6 +9,17 @@ import UIKit
 
 class DetailViewCustomCell: UIView {
     
+    //MARK: - Initializer
+    init(backgroundColor: UIColor) {
+        super.init(frame: .zero)
+        self.backgroundColor = backgroundColor
+        setupUI()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     //MARK: - UIElements
     let mainStackView: UIStackView = {
         let stackView = UIStackView()
@@ -70,17 +81,6 @@ class DetailViewCustomCell: UIView {
         }
     }
     
-    //MARK: - Initializer
-    init(backgroundColor: UIColor) {
-        super.init(frame: .zero)
-        self.backgroundColor = backgroundColor
-        setupUI()
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
     //MARK: - UI Setup
     private func setupUI() {
         partOfSpeechLabel.isHidden = true
@@ -94,10 +94,6 @@ class DetailViewCustomCell: UIView {
         titleStackView.addArrangedSubview(partOfSpeechLabel)
         mainStackView.addArrangedSubview(titleStackView)
         mainStackView.addArrangedSubview(bodyLabel)
-    }
-    
-    private func addTitleLabel() {
-        
     }
     
     private func setupStackView() {

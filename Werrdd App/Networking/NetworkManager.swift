@@ -9,6 +9,7 @@ import Foundation
 import UIKit
 
 enum Error: LocalizedError {
+    
     case invalidURL
     case invalidData
     
