@@ -13,9 +13,10 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureNaviationItems()
-        view.backgroundColor = UIConfiguration.backgroundColor
         configureUI()
-    }
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }   
     
     //MARK: - UI Properties
     let spinnerView = SpinnerViewController()
@@ -103,6 +104,13 @@ class HomeViewController: UIViewController {
     
     //MARK: - UI Setup
     private func configureUI() {
+        
+        view.backgroundColor = UIConfiguration.backgroundColor
+        
+        let tapGesture = UITapGestureRecognizer(target: view, action: #selector(UIView.endEditing))
+        view.addGestureRecognizer(tapGesture)
+        tapGesture.cancelsTouchesInView = false
+
         view.addSubview(stackView)
         stackView.addArrangedSubview(tableView)
         stackView.addArrangedSubview(searchBar)
@@ -202,6 +210,20 @@ class HomeViewController: UIViewController {
     @objc private func didTapFavoritesListButton() {
         navigationController?.pushViewController(FavoritesListViewController(), animated: true)
     }
+    
+    @objc func keyboardWillShow(notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+            if self.view.frame.origin.y == 0 {
+                self.view.frame.origin.y -= keyboardSize.height
+            }
+        }
+    }
+
+    @objc func keyboardWillHide(notification: NSNotification) {
+        if self.view.frame.origin.y != 0 {
+            self.view.frame.origin.y = 0
+        }
+    }
 }
 
 
@@ -250,6 +272,8 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
 extension HomeViewController: UISearchBarDelegate {
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        
+        view.endEditing(true)
         
         guard let userInputedWord = searchBar.text else {
             return
