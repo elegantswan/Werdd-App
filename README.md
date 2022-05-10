@@ -1,4 +1,4 @@
-# 🤖Kiva Bot🤖
+# 📖Werrdd App📖
 ![badmath](https://img.shields.io/badge/Swift-FA7343?style=for-the-badge&logo=swift&logoColor=white)
 ![badmath](http://ForTheBadge.com/images/badges/built-with-love.svg)
 
