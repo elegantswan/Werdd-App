@@ -21,13 +21,12 @@ Simple interface for users to discover new words or search for specfic ones that
 
 ## Visuals
 
-![alt text](https://i.imgur.com/qGeKtEC.png)
-
-![alt text](https://i.imgur.com/b7z68GZ.png)
-    
-![alt text](https://i.imgur.com/bz0825E.png)
-
-![alt text](https://i.imgur.com/QVOMzkS.png)
+<p align="center">
+<img src= "https://i.imgur.com/qGeKtEC.png" width="500" >
+<img src= "https://i.imgur.com/b7z68GZ.png" width="500" >
+<img src= "https://i.imgur.com/bz0825E.png" width="500" >
+<img src= "https://i.imgur.com/QVOMzkS.png" width="500" >
+</p>
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
