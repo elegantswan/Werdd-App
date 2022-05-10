@@ -13,6 +13,7 @@ class FavoritesListViewController: UIViewController {
     
     //MARK: - Lifecycle Methods
     override func viewDidLoad() {
+        
         super.viewDidLoad()
         view.backgroundColor = UIConfiguration.backgroundColor
         addSubviews()
@@ -50,7 +51,7 @@ class FavoritesListViewController: UIViewController {
         view.addSubview(tableView)
         
         NSLayoutConstraint.activate([
-            tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
@@ -58,12 +59,20 @@ class FavoritesListViewController: UIViewController {
     }
     
     private func setupNavigationItems() {
-        navigationController?.navigationBar.tintColor = UIConfiguration.definitionCardBackground
-        navigationItem.title = "💛Favorite Words💛"
-        
+        navigationController?.navigationBar.barTintColor = UIConfiguration.definitionCardBackground
+                
+        //Main icon on navigation bar
+        let imageView = UIImageView(image: UIImage(systemName: "books.vertical.fill")?.withTintColor(UIConfiguration.definitionCardBackground))
+        imageView.frame = CGRect(x: 0, y: 0, width: 200, height: 40)
+        imageView.contentMode = .scaleAspectFit
+
+        let titleView = UIView(frame: CGRect(x: 0, y: 0, width: 200, height: 40))
+
+        titleView.addSubview(imageView)
+        titleView.backgroundColor = .clear
+        self.navigationItem.titleView = titleView
     }
 }
-
 
 extension FavoritesListViewController: UITableViewDelegate, UITableViewDataSource {
     

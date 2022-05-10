@@ -11,7 +11,6 @@
 		D8304CAA2807E6B500FFE4DD /* DetailViewCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8304CA92807E6B500FFE4DD /* DetailViewCustomCell.swift */; };
 		D8304CAC280E66C000FFE4DD /* WordModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8304CAB280E66C000FFE4DD /* WordModel.swift */; };
 		D8304CAE280F235400FFE4DD /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8304CAD280F235300FFE4DD /* NetworkManager.swift */; };
-		D8304CB82813B12B00FFE4DD /* RESTHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8304CB72813B12B00FFE4DD /* RESTHelper.swift */; };
 		D8304CBA2813B19D00FFE4DD /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8304CB92813B19D00FFE4DD /* Constants.swift */; };
 		D8304CBD2818F34B00FFE4DD /* SpinnerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8304CBC2818F34B00FFE4DD /* SpinnerViewController.swift */; };
 		D8304CC0281CAC9E00FFE4DD /* FavoritesListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8304CBF281CAC9E00FFE4DD /* FavoritesListViewController.swift */; };
@@ -28,6 +27,7 @@
 		D8695A9527DACC420024BC63 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D8695A9327DACC420024BC63 /* LaunchScreen.storyboard */; };
 		D8695A9D27DAEDCB0024BC63 /* DefinitionCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8695A9C27DAEDCB0024BC63 /* DefinitionCard.swift */; };
 		D8695A9F27EE3E700024BC63 /* UIConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8695A9E27EE3E700024BC63 /* UIConfiguration.swift */; };
+		D8A979E82829E3AE007CF431 /* HapticsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8A979E72829E3AE007CF431 /* HapticsManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,7 +35,6 @@
 		D8304CA92807E6B500FFE4DD /* DetailViewCustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewCustomCell.swift; sourceTree = "<group>"; };
 		D8304CAB280E66C000FFE4DD /* WordModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordModel.swift; sourceTree = "<group>"; };
 		D8304CAD280F235300FFE4DD /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
-		D8304CB72813B12B00FFE4DD /* RESTHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RESTHelper.swift; sourceTree = "<group>"; };
 		D8304CB92813B19D00FFE4DD /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		D8304CBC2818F34B00FFE4DD /* SpinnerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpinnerViewController.swift; sourceTree = "<group>"; };
 		D8304CBF281CAC9E00FFE4DD /* FavoritesListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesListViewController.swift; sourceTree = "<group>"; };
@@ -54,6 +53,7 @@
 		D8695A9627DACC420024BC63 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D8695A9C27DAEDCB0024BC63 /* DefinitionCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefinitionCard.swift; sourceTree = "<group>"; };
 		D8695A9E27EE3E700024BC63 /* UIConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIConfiguration.swift; sourceTree = "<group>"; };
+		D8A979E72829E3AE007CF431 /* HapticsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticsManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,8 +70,8 @@
 		D8304CAF280F236300FFE4DD /* Networking */ = {
 			isa = PBXGroup;
 			children = (
-				D8304CBB2813B1C200FFE4DD /* Utils */,
-				D8304CB52813B0EC00FFE4DD /* Helpers */,
+				D8304CAB280E66C000FFE4DD /* WordModel.swift */,
+				D8304CB92813B19D00FFE4DD /* Constants.swift */,
 				D8304CAD280F235300FFE4DD /* NetworkManager.swift */,
 			);
 			path = Networking;
@@ -86,36 +86,12 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
-		D8304CB1280F238500FFE4DD /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				D8304CAB280E66C000FFE4DD /* WordModel.swift */,
-			);
-			path = Models;
-			sourceTree = "<group>";
-		};
 		D8304CB2280F23CF00FFE4DD /* UI Elements */ = {
 			isa = PBXGroup;
 			children = (
 				D8695A9E27EE3E700024BC63 /* UIConfiguration.swift */,
 			);
 			path = "UI Elements";
-			sourceTree = "<group>";
-		};
-		D8304CB52813B0EC00FFE4DD /* Helpers */ = {
-			isa = PBXGroup;
-			children = (
-				D8304CB72813B12B00FFE4DD /* RESTHelper.swift */,
-			);
-			path = Helpers;
-			sourceTree = "<group>";
-		};
-		D8304CBB2813B1C200FFE4DD /* Utils */ = {
-			isa = PBXGroup;
-			children = (
-				D8304CB92813B19D00FFE4DD /* Constants.swift */,
-			);
-			path = Utils;
 			sourceTree = "<group>";
 		};
 		D8304CBE2818F36200FFE4DD /* Custom Cells */ = {
@@ -141,8 +117,8 @@
 		D854E742282229D3008E49E9 /* Persistence */ = {
 			isa = PBXGroup;
 			children = (
-				D854E74328233562008E49E9 /* Models */,
 				D854E740282229A6008E49E9 /* DataManager.swift */,
+				D854E74328233562008E49E9 /* Models */,
 			);
 			path = Persistence;
 			sourceTree = "<group>";
@@ -177,19 +153,27 @@
 			children = (
 				D8695A8827DACC3F0024BC63 /* AppDelegate.swift */,
 				D8695A8A27DACC3F0024BC63 /* SceneDelegate.swift */,
+				D8304CAF280F236300FFE4DD /* Networking */,
+				D8A979E62829E390007CF431 /* Haptics */,
 				D854E742282229D3008E49E9 /* Persistence */,
 				D8304CC1281CACC700FFE4DD /* ViewControllers */,
 				D8304CBE2818F36200FFE4DD /* Custom Cells */,
 				D8304CB2280F23CF00FFE4DD /* UI Elements */,
-				D8304CB1280F238500FFE4DD /* Models */,
 				D8304CB0280F237300FFE4DD /* Views */,
-				D8304CAF280F236300FFE4DD /* Networking */,
 				D8695A9127DACC420024BC63 /* Assets.xcassets */,
 				D8695A9327DACC420024BC63 /* LaunchScreen.storyboard */,
 				D8695A9627DACC420024BC63 /* Info.plist */,
 				D854E7392822232D008E49E9 /* WerrddApp.xcdatamodeld */,
 			);
 			path = "Werrdd App";
+			sourceTree = "<group>";
+		};
+		D8A979E62829E390007CF431 /* Haptics */ = {
+			isa = PBXGroup;
+			children = (
+				D8A979E72829E3AE007CF431 /* HapticsManager.swift */,
+			);
+			path = Haptics;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -262,7 +246,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D8304CB82813B12B00FFE4DD /* RESTHelper.swift in Sources */,
 				D8351A0D27FBBD6900E3739E /* HomeTableViewCell.swift in Sources */,
 				D8304CAC280E66C000FFE4DD /* WordModel.swift in Sources */,
 				D8304CBD2818F34B00FFE4DD /* SpinnerViewController.swift in Sources */,
@@ -280,6 +263,7 @@
 				D8304CAA2807E6B500FFE4DD /* DetailViewCustomCell.swift in Sources */,
 				D8304CA828067A7000FFE4DD /* DetailViewController.swift in Sources */,
 				D8304CC0281CAC9E00FFE4DD /* FavoritesListViewController.swift in Sources */,
+				D8A979E82829E3AE007CF431 /* HapticsManager.swift in Sources */,
 				D8304CBA2813B19D00FFE4DD /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

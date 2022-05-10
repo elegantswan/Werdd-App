@@ -146,25 +146,14 @@ class DetailViewController: UIViewController {
     private func setupNavigationItems() {
         navigationItem.title = selectedWord.word
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "heart"), style: .plain, target: self, action: #selector(didTapFavoriteButton))
-        
-        //create a new button    *****TESTING*******
-                let button = UIButton(type: .custom)
-                //set image for button
-                button.setImage(UIImage(named: "heart"), for: .normal)
-                //add function for button
-                button.addTarget(self, action: #selector(didTapFavoriteButton), for: .touchUpInside)
-                //set frame
-                button.frame = CGRect(x: 0, y: 0, width: 53, height: 51)
-
-                let barButton = UIBarButtonItem(customView: button)
-                //assign button to navigationbar
-                self.navigationItem.rightBarButtonItem = barButton
     }
     
     //MARK: - Action Functions
     @objc private func didTapFavoriteButton() {
         
-        favoriteButton.isSelected.toggle()
+        self.navigationItem.rightBarButtonItem?.image = UIImage(systemName: "heart.fill")
+
+        HapticsManager.shared.vibrate(for: .success)
             
         guard let definition = wordDetails.definition else {
             return

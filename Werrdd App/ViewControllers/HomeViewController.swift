@@ -14,9 +14,8 @@ class HomeViewController: UIViewController {
         super.viewDidLoad()
         configureNaviationItems()
         configureUI()
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
-    }   
+        configureKeyboard()
+    }
     
     //MARK: - UI Properties
     let spinnerView = SpinnerViewController()
@@ -106,10 +105,6 @@ class HomeViewController: UIViewController {
     private func configureUI() {
         
         view.backgroundColor = UIConfiguration.backgroundColor
-        
-        let tapGesture = UITapGestureRecognizer(target: view, action: #selector(UIView.endEditing))
-        view.addGestureRecognizer(tapGesture)
-        tapGesture.cancelsTouchesInView = false
 
         view.addSubview(stackView)
         stackView.addArrangedSubview(tableView)
@@ -147,8 +142,10 @@ class HomeViewController: UIViewController {
         ])
         
         if #available(iOS 15, *) {
+            
+            navigationController?.navigationBar.standardAppearance.titleTextAttributes = [.foregroundColor: UIColor.red]
+
             let appearance = UINavigationBarAppearance()
-            appearance.configureWithOpaqueBackground()
             appearance.backgroundColor = UIConfiguration.backgroundColor
             UINavigationBar.appearance().scrollEdgeAppearance = appearance
             UINavigationBar.appearance().standardAppearance = appearance
@@ -156,6 +153,7 @@ class HomeViewController: UIViewController {
     }
     
     private func configureNaviationItems() {
+        
         navigationController?.navigationBar.tintColor = UIConfiguration.definitionCardBackground
 
         //Main icon on navigation bar
@@ -169,9 +167,19 @@ class HomeViewController: UIViewController {
         titleView.backgroundColor = .clear
         self.navigationItem.titleView = titleView
                 
-        //Favorites icon on right side of navigation bar
-        let tabBarImage = UIImage(systemName: "list.star")?.withTintColor(UIConfiguration.definitionCardBackground, renderingMode: .alwaysOriginal)
+        //Bookmark icon on right side of navigation bar
+        let tabBarImage = UIImage(systemName: "bookmark")?.withTintColor(UIConfiguration.definitionCardBackground, renderingMode: .alwaysOriginal)
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: tabBarImage, style: .plain, target: self, action: #selector(didTapFavoritesListButton))
+    }
+    
+    private func configureKeyboard() {
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+        
+        let tapGesture = UITapGestureRecognizer(target: view, action: #selector(UIView.endEditing))
+        view.addGestureRecognizer(tapGesture)
+        tapGesture.cancelsTouchesInView = false
     }
     
     private func presentSpinnerView() {
@@ -226,7 +234,6 @@ class HomeViewController: UIViewController {
     }
 }
 
-
 extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -253,7 +260,6 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
     }
         
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
         
         guard let selectedWord = wordDetails.first else {
             return

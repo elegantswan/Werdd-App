@@ -9,8 +9,6 @@ import Foundation
 import UIKit
 
 class UIConfiguration {
-    
-    static let backgroundColor = UIColor(red: 253/255, green: 252/255, blue: 220/255, alpha: 1)
-    
-    static let definitionCardBackground = UIColor(red: 254/255, green: 217/255, blue: 183/255, alpha: 1)
+    static let backgroundColor = UIColor(red: 255/255, green: 239/255, blue: 211/255, alpha: 1)
+    static let definitionCardBackground = UIColor(red: 255/255, green: 196/255, blue: 155/255, alpha: 1)
 }

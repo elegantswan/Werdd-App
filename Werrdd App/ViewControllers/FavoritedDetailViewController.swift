@@ -148,6 +148,7 @@ class FavoritedDetailViewController: UIViewController {
     //MARK: - Action Functions
     @objc private func didTapDeleteButton() {
         DataManager.deleteWord(word: favoritedWord)
+        HapticsManager.shared.vibrate(for: .success)
         navigationController?.popViewController(animated: true)
     }
 }
